@@ -32,7 +32,7 @@ namespace siteMain.Domain.Entities
         public virtual string TitleImagePath { get; set; }
 
         [Display(Name = "Рейтинг фильма")]
-        public virtual int movieRating { get; set; }
+        public virtual int MovieRating { get; set; }
 
         [Display(Name = "SEO метатег Title")]
         public virtual string Metatitle { get; set; }
@@ -44,6 +44,9 @@ namespace siteMain.Domain.Entities
 
         [Display(Name = "SEO метатег KeyWords")]
         public virtual string MetaKeyWords { get; set; }
+
+        
+
 
 
         [DataType(DataType.Time)]

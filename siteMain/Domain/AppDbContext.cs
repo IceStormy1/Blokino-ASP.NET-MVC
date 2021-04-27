@@ -15,6 +15,8 @@ namespace siteMain.Domain
 
         public DbSet<TextFields> TextFields { get; set; }
         public DbSet<ServiceItem> ServiceItems { get; set; }
+        public DbSet<UserRateFilms> UserRateFilms { get; set; }
+        public DbSet<AllFilms> AllFilms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -85,6 +87,16 @@ namespace siteMain.Domain
                 Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                 CodeWord = "PageContacts",
                 Title = "Контакты"
+            });
+            modelBuilder.Entity<UserRateFilms>().HasData(new UserRateFilms
+            {
+                Id = new Guid("fb691a9b-8f50-4f78-a89e-88116efb1406"), IdFilms = "d8270628-fdf8-4831-98d5-8d1596e7e42e"
+                MovieRating = 5
+            });
+            modelBuilder.Entity<AllFilms>().HasData(new AllFilms
+            {
+                Id = new Guid("d8270628-fdf8-4831-98d5-8d1596e7e42e"),
+                MovieRating = 5
             });
         }
     }

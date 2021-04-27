@@ -20,7 +20,7 @@ namespace siteMain.Domain.Entities
         public override string Text { get; set; }
 
         [Display(Name = "Рейтинг фильма")]
-        public override int movieRating { get; set; }
+        public override int MovieRating { get; set; }
 
     }
 }
