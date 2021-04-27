@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot\\js\\scriptss.js",
+    "inputFiles": [
+      "wwwroot\\js\\jquery-1.4.2.min.js",
+      "wwwroot\\js\\cufon-replace.js",
+      "wwwroot\\js\\cufon-yui.js",
+      "wwwroot\\js\\Gill_Sans_400.font.js",
+      "wwwroot\\js\\ie_png.js",
+      "wwwroot\\js\\scripts.js",
+      "wwwroot\\js\\site.js"
+    ]
+  }
+]

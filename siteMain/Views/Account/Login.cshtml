@@ -1,0 +1,37 @@
+﻿@model LoginViewModel
+<style type="text/css">    #footer {
+         background: url(/images/footer-tail.gif) repeat-x left top #bfbfbf;
+         color: #1d1d1d;
+         font-size: .86em;
+         line-height: 1.667em;
+         text-align: center;
+         margin-top: 400px;
+    }</style>
+<div>
+    <h1>Вход в личный кабинет</h1>
+    <div class="div-box-reg">
+        <form asp-area="" asp-controller="Account" asp-action="Login" method="post" asp-route-returnUrl="@ViewBag.returnUrl">
+            <div asp-validation-summary="All"></div>
+            <div>
+                <label class="asd"asp-for="UserName"></label>
+                <input  asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+            </div>
+            <div>
+                <label class="asd" asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div>
+                <label asp-for="RememberMe"></label>
+                <input class="asd2" asp-for="RememberMe" />
+                <span asp-validation-for="RememberMe"></span>
+            </div>
+            <div>
+               
+                    <input class="asd2" type="submit" value="Войти" />
+                    <a class="asd2"asp-area="" asp-controller="Account" asp-action="Register"><input class="asd2"type="button" value="Впервые у нас на сайте?" /></a>
+            </div>
+        </form>
+    </div>
+</div>

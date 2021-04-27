@@ -1,0 +1,5 @@
+CodeGeneration.Design - заготовки для создания контроллеров
+Logging debug - выводит логги в процессе разработки
+Entity Framework Core + sql server + design
+identity  - добавляет пользователей в БД, работа с паролями хэшем и т.д
+

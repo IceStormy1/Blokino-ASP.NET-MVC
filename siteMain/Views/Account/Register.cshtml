@@ -1,0 +1,50 @@
+﻿@model RegistrationViewModel
+
+<style type="text/css">    #footer {
+         background: url(/images/footer-tail.gif) repeat-x left top #bfbfbf;
+         color: #1d1d1d;
+         font-size: .86em;
+         line-height: 1.667em;
+         text-align: center;
+         margin-top: 400px;
+     }</style>
+<div>
+    <h1>Регистрация</h1>
+    <div class="div-box-reg">
+        <form asp-area="" asp-controller="Account" asp-action="Register" method="post" asp-route-returnUrl="@ViewBag.returnUrl">
+            
+            <div asp-validation-summary="All"></div>
+            <div>
+                <label class="asd" asp-for="LoginReg"></label>
+                <input asp-for="LoginReg" />
+                <span asp-validation-for="LoginReg"></span>
+            </div>
+            <div>
+                <label class="asd" asp-for="PasswordReg"></label>
+                <input asp-for="PasswordReg" />
+                <span asp-validation-for="PasswordReg"></span>
+            </div>
+            <div>
+                <label class="asd" asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" />
+                <span asp-validation-for="ConfirmPassword"></span>
+            </div>
+            <div>
+                <label class="asd" asp-for="EmailReg"></label>
+                <input asp-for="EmailReg" />
+                <span asp-validation-for="EmailReg"></span>
+            </div>
+            <div>
+                <label class="asd" asp-for="PhoneReg"></label>
+                <input asp-for="PhoneReg" />
+                <span asp-validation-for="PhoneReg"></span>
+            </div>
+
+            <div>
+                <input class="asd2" type="submit" value="Зарегистрироваться" />
+                <a class="asd2" asp-area="" asp-controller="Account" asp-action="Login"><input class="asd2" type="button" value="Уже есть аккаунт?" /></a>
+            </div>
+        </form>
+    </div>
+</div>
+
