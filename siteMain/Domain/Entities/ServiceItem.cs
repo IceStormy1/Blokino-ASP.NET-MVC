@@ -8,19 +8,17 @@ namespace siteMain.Domain.Entities
 {
     public class ServiceItem:EntityBase
     {
-        [Required(ErrorMessage = "Заполните название фильма")]
-        [Display(Name = "Название фильма")]
+        [Required(ErrorMessage = "Заполните название услуги")]
+        [Display(Name = "Название услуги")]
         public override string Title { get; set; }
 
 
-        [Display(Name = "Краткое описание фильма")]
+        [Display(Name = "Краткое описание услуги")]
         public override string Subtitle { get; set; }
 
-        [Display(Name = "Полное описание фильма")]
+        [Display(Name = "Полное описание услуги")]
         public override string Text { get; set; }
 
-        [Display(Name = "Рейтинг фильма")]
-        public override int MovieRating { get; set; }
 
     }
 }
