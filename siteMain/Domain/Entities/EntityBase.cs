@@ -11,8 +11,6 @@ namespace siteMain.Domain.Entities
 
         protected EntityBase() => DateAdded = DateTime.UtcNow;
 
-
-
         [Required]
         public Guid Id { get; set; }
 
@@ -47,5 +45,22 @@ namespace siteMain.Domain.Entities
         [DataType(DataType.Time)]
         public DateTime DateAdded { get; set; }
 
+    }
+    public class UserRate
+    {
+        
+        public Guid IdUser { get; set; }
+        public string UserName { get; set; }
+        [Key]
+        public int RateFilm { get; set; }
+        public Guid IdFilm { get; set; }
+
+    }
+    public class AllFilms
+    {
+        [Key]
+        public Guid IdFilm { get; set; }
+        public string Title { get; set; }
+        public float AvgRateFilm { get; set; }
     }
 }
