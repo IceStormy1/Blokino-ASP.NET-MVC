@@ -55,6 +55,7 @@ namespace siteMain.Domain.Entities
         public int RateFilm { get; set; }
         public Guid IdFilm { get; set; }
 
+        public AllFilms AllFilms { get; set; }
     }
     public class AllFilms
     {
@@ -62,5 +63,7 @@ namespace siteMain.Domain.Entities
         public Guid IdFilm { get; set; }
         public string Title { get; set; }
         public float AvgRateFilm { get; set; }
+
+        public List<UserRate> UserRates { get; set; }
     }
 }
