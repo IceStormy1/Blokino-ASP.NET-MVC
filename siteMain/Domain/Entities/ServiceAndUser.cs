@@ -7,7 +7,7 @@ namespace siteMain.Domain.Entities
 {
     public class ServiceAndUser
     {
-        public ServiceItem ServiceItems;
-        public UserRate UserRate;
+        public ServiceItem ServiceItems { get; set; }
+        public UserRate UserRate { get; set; }
     }
 }
