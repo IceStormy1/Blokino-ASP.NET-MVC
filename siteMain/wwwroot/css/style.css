@@ -231,3 +231,9 @@ ul.big-image-list li img {
 .div-box-reg .btn-2 {
     margin-top: 15px;
 }
+
+.img-block {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+}

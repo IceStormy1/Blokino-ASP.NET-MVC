@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using siteMain.Domain;
 
 namespace siteMain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210506095323__initial5")]
+    partial class _initial5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,14 +51,14 @@ namespace siteMain.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "88d9cb7d-630b-4950-9a32-00cd18a83b1d",
+                            ConcurrencyStamp = "e07f5e77-7730-447d-b3e3-e62c2486a88a",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "cf0dc572-32bd-4119-a388-4934f630896f",
-                            ConcurrencyStamp = "cf870e03-704d-4034-9a8c-843bd102a0d2",
+                            ConcurrencyStamp = "5a266125-9a27-4879-aa58-41004cfa027f",
                             Name = "DefaultUser",
                             NormalizedName = "USER"
                         });
@@ -155,13 +157,13 @@ namespace siteMain.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a184ccbf-cfa4-438a-a273-bc36df6e20a4",
+                            ConcurrencyStamp = "4e2ad32d-817c-4fbf-9ff7-cc4a5b7a5766",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENNu6DLlQxnv7wWVKWLV10B9nzAzl5k5wnwkNxQGE7NK8+Nm2PeBCzft64Bm1xcutg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED1y86bd0Cngl69q4ntLbsyEO4kC93MJOwjK1tt0nVOf40viRyPfHEwTfmI0RHlAnA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -171,13 +173,13 @@ namespace siteMain.Migrations
                         {
                             Id = "2803a9ed-8c75-4696-a109-1848a86d40ec",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ff087cda-47a4-4bb9-87b3-e2dc8c334743",
+                            ConcurrencyStamp = "5a9ef69e-5918-4564-b176-2f49d7954089",
                             Email = "mishytka-02@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MISHYTKA-02@MAIL.RU",
                             NormalizedUserName = "MISHA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAl6tCH0sDla0T7AZHVx/lp+OA5gUs76gce5kLo0GhHEUORrSFSBfGlxuPoKaGC9lA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELa7O8NdkfVSfNsvr6WxPLsoSM4JjlAAn2o8JGc04xwmzBDnqV7fHQ/6FnQc2IuFDw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -277,14 +279,28 @@ namespace siteMain.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("siteMain.Domain.Entities.ServiceItem", b =>
+            modelBuilder.Entity("siteMain.Domain.Entities.AllFilms", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdFilm")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<float>("AvgRateFilm")
                         .HasColumnType("real");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdFilm");
+
+                    b.ToTable("AllFilms");
+                });
+
+            modelBuilder.Entity("siteMain.Domain.Entities.ServiceItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
@@ -359,7 +375,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2021, 5, 6, 10, 10, 33, 239, DateTimeKind.Utc).AddTicks(4737),
+                            DateAdded = new DateTime(2021, 5, 6, 9, 53, 22, 931, DateTimeKind.Utc).AddTicks(1190),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -367,7 +383,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2021, 5, 6, 10, 10, 33, 239, DateTimeKind.Utc).AddTicks(6852),
+                            DateAdded = new DateTime(2021, 5, 6, 9, 53, 22, 931, DateTimeKind.Utc).AddTicks(3340),
                             Text = "Содержание заполняется администратором",
                             Title = "Наши услуги"
                         },
@@ -375,7 +391,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2021, 5, 6, 10, 10, 33, 239, DateTimeKind.Utc).AddTicks(6910),
+                            DateAdded = new DateTime(2021, 5, 6, 9, 53, 22, 931, DateTimeKind.Utc).AddTicks(3401),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
@@ -388,6 +404,9 @@ namespace siteMain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<Guid?>("AllFilmsIdFilm")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("IdFilm")
                         .HasColumnType("uniqueidentifier");
 
@@ -398,6 +417,8 @@ namespace siteMain.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RateFilm");
+
+                    b.HasIndex("AllFilmsIdFilm");
 
                     b.ToTable("UserRate");
                 });
@@ -451,6 +472,13 @@ namespace siteMain.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("siteMain.Domain.Entities.UserRate", b =>
+                {
+                    b.HasOne("siteMain.Domain.Entities.AllFilms", "AllFilms")
+                        .WithMany("UserRates")
+                        .HasForeignKey("AllFilmsIdFilm");
                 });
 #pragma warning restore 612, 618
         }

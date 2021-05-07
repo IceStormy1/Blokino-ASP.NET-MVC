@@ -12,6 +12,7 @@ namespace siteMain.Domain.Entities
         protected EntityBase() => DateAdded = DateTime.UtcNow;
 
         [Required]
+        [Key]
         public Guid Id { get; set; }
 
         [Display(Name = "Название(заголовок)")]
@@ -48,22 +49,11 @@ namespace siteMain.Domain.Entities
     }
     public class UserRate
     {
-        
         public Guid IdUser { get; set; }
         public string UserName { get; set; }
         [Key]
         public int RateFilm { get; set; }
         public Guid IdFilm { get; set; }
-
-        public AllFilms AllFilms { get; set; }
     }
-    public class AllFilms
-    {
-        [Key]
-        public Guid IdFilm { get; set; }
-        public string Title { get; set; }
-        public float AvgRateFilm { get; set; }
-
-        public List<UserRate> UserRates { get; set; }
-    }
+    
 }

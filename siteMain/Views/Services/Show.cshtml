@@ -3,19 +3,50 @@
     ViewBag.Title = Model.Metatitle;
     ViewBag.Description = Model.MetaDescription;
     ViewBag.Keywords = Model.MetaKeyWords;
+    ViewBag.AvgRate = Model.AvgRateFilm;
 }
 
 <div>
     <h2>
         @Model.Title
     </h2>
-    <h2>
+    <h3>
         @Model.Subtitle
-    </h2>
+    </h3>
     <div>
         <img class="img-block" src="~/images/@Model.TitleImagePath" />
     </div>
 </div>
 <div>
+    <br/>
     @Html.Raw(Model.Text)
+    
+</div>
+<div>
+    <br/>
+    <h3>Рейтинг фильма: @Model.AvgRateFilm</h3>
+   @ViewBag.IdFilm
+    <br/>
+    @ViewBag.RateFilm
+    <br/>
+    @ViewBag.IdUser
+    <br/>
+    @ViewBag.UserName
+    <p>
+        <font size="4" color="red">Уже посмотрели фильм? Оставьте пожалуйста оценку</font>
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select>
+        <input type="submit" value="Сохранить"/>
+    </p>
+
 </div>

@@ -12,7 +12,6 @@ namespace siteMain.Domain.Repositories.Abstract
     {
         IQueryable<ServiceItem> GetServiceItems(); //выборка всех текстовых полей
         ServiceItem GetServiceItemById(Guid id); //выбрать текстовое поле по id
-        
         void SaveServiceItem(ServiceItem entity); // сохранить изменения
         void DeleteServiceItem(Guid id); // удалить услугу
     }

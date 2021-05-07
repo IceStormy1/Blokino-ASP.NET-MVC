@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using siteMain.Domain;
+using siteMain.Domain.Entities;
+using siteMain.Domain.Repositories.EntityFramework;
 
 namespace siteMain.Controllers
 {
@@ -20,6 +22,12 @@ namespace siteMain.Controllers
         
         public IActionResult Index(Guid id)
         {
+            UserRate userRate = new UserRate();
+            ViewBag.IdFilm = userRate.IdFilm;
+            ViewBag.RateFilm = userRate.RateFilm;
+            ViewBag.IdUser = userRate.IdUser;
+            ViewBag.UserName = userRate.UserName;
+            
             if (id != default)
             {
                 return View("Show", dataManager.ServiceItems.GetServiceItemById(id));

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using siteMain.Domain.Entities;
 using siteMain.Domain.Repositories.Abstract;
 
 namespace siteMain.Domain
@@ -10,6 +11,8 @@ namespace siteMain.Domain
     {
         public ITextFieldsRepository TextFields { get; set; }
         public  IServiceItemsRepository ServiceItems { get; set; }
+       
+        public IUserRate UserRate { get; set; }
 
         public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository textServiceItemsRepository)
         {

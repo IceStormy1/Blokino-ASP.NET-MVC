@@ -18,8 +18,5 @@ namespace siteMain.Domain.Entities
 
         [Display(Name = "Содержание страницы")]
         public override string Text { get; set; } = "Содержание заполняется администратором";
-
-
-
     }
 }
