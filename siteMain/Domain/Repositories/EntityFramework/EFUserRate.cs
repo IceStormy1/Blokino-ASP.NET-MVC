@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using siteMain.Domain.Entities;
 using siteMain.Domain.Repositories.Abstract;
+using siteMain.Models;
 
 namespace siteMain.Domain.Repositories.EntityFramework
 {
@@ -14,7 +15,8 @@ namespace siteMain.Domain.Repositories.EntityFramework
         public void SaveUserRate(UserRate entity)
         {
             context.Entry(entity).State = EntityState.Added;
-                context.SaveChanges();
+
+            context.SaveChanges();
         }
     }
 }

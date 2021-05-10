@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using siteMain.Domain.Entities;
 
+
 namespace siteMain.Domain.Entities
 {
     public class ServiceItem:EntityBase
@@ -22,5 +23,8 @@ namespace siteMain.Domain.Entities
 
         [Display(Name = "Средний рейтинг фильма")]
         public float AvgRateFilm { get; set; }
+
+        public List<UserRate> UserRates { get; set; }
     }
+    
 }

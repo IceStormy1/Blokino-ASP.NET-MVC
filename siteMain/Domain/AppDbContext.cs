@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using siteMain.Domain.Entities;
 
+
 namespace siteMain.Domain
 {
     public class AppDbContext : IdentityDbContext<IdentityUser>
@@ -86,6 +87,7 @@ namespace siteMain.Domain
                 CodeWord = "PageContacts",
                 Title = "Контакты"
             });
+            
         }
     }
 }

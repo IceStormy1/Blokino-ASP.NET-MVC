@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using siteMain.Service;
 
 namespace siteMain.Domain.Entities
 {
@@ -12,7 +15,6 @@ namespace siteMain.Domain.Entities
         protected EntityBase() => DateAdded = DateTime.UtcNow;
 
         [Required]
-        [Key]
         public Guid Id { get; set; }
 
         [Display(Name = "Название(заголовок)")]
@@ -47,13 +49,4 @@ namespace siteMain.Domain.Entities
         public DateTime DateAdded { get; set; }
 
     }
-    public class UserRate
-    {
-        public Guid IdUser { get; set; }
-        public string UserName { get; set; }
-        [Key]
-        public int RateFilm { get; set; }
-        public Guid IdFilm { get; set; }
-    }
-    
 }

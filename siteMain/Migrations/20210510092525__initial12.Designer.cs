@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using siteMain.Domain;
 
 namespace siteMain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210510092525__initial12")]
+    partial class _initial12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,14 +51,14 @@ namespace siteMain.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "96ac746d-f789-4394-8876-d488bc541e25",
+                            ConcurrencyStamp = "5d745a25-1f0f-4460-b769-83379631ef8e",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "cf0dc572-32bd-4119-a388-4934f630896f",
-                            ConcurrencyStamp = "44ae0f8d-36d4-4d7d-b2a1-6a0705cf25f6",
+                            ConcurrencyStamp = "9c895a0c-2400-47ce-91eb-d668010ed6ef",
                             Name = "DefaultUser",
                             NormalizedName = "USER"
                         });
@@ -161,13 +163,13 @@ namespace siteMain.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2e291372-8f56-40cc-b3d2-1700da693974",
+                            ConcurrencyStamp = "60e068f8-f2cf-4328-bd84-3a1fcf2f1137",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIdae47+ZLvJyBoTKf39Utkl+NDA6wkAeMyWoGiR8PmLrEW8CFIU3iWrEEmmDzufOA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEORj/c2WSA/0k62W4JREExRk2lopOI3e4Gn/3nCYGF/LnsrSnUEFXdPfZV1ivLlG9Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -177,13 +179,13 @@ namespace siteMain.Migrations
                         {
                             Id = "2803a9ed-8c75-4696-a109-1848a86d40ec",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8396d4f3-d846-4f86-92a9-e3e9676c4f48",
+                            ConcurrencyStamp = "4edcb031-cef4-4774-b863-bb9fd986774c",
                             Email = "mishytka-02@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MISHYTKA-02@MAIL.RU",
                             NormalizedUserName = "MISHA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKtpxtEn6gqa+vLQ1TZjP21x8uMXVnSph7UEwGwaYPP6T3lhw5vkrW2XN7FGKSidZA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAGWa2G1pJvgSGGFyyQssEHH9El19YoBjpWwdeprx6m3LyvLpjvZsEJ3tUrVhh2XfA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -365,7 +367,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2021, 5, 10, 9, 59, 15, 608, DateTimeKind.Utc).AddTicks(924),
+                            DateAdded = new DateTime(2021, 5, 10, 9, 25, 25, 335, DateTimeKind.Utc).AddTicks(2423),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -373,7 +375,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2021, 5, 10, 9, 59, 15, 608, DateTimeKind.Utc).AddTicks(3080),
+                            DateAdded = new DateTime(2021, 5, 10, 9, 25, 25, 335, DateTimeKind.Utc).AddTicks(4598),
                             Text = "Содержание заполняется администратором",
                             Title = "Наши услуги"
                         },
@@ -381,7 +383,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2021, 5, 10, 9, 59, 15, 608, DateTimeKind.Utc).AddTicks(3147),
+                            DateAdded = new DateTime(2021, 5, 10, 9, 25, 25, 335, DateTimeKind.Utc).AddTicks(4657),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
@@ -406,14 +408,17 @@ namespace siteMain.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UsersId")
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UsersId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdNumber");
 
                     b.HasIndex("ServiceItemId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UsersId1");
 
                     b.ToTable("UserRate");
                 });
@@ -484,7 +489,7 @@ namespace siteMain.Migrations
 
                     b.HasOne("siteMain.Service.User", "Users")
                         .WithMany()
-                        .HasForeignKey("UsersId");
+                        .HasForeignKey("UsersId1");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using siteMain.Domain;
 
 namespace siteMain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210509091407__initial9")]
+    partial class _initial9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,14 +51,14 @@ namespace siteMain.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "96ac746d-f789-4394-8876-d488bc541e25",
+                            ConcurrencyStamp = "4de7dd03-ee24-463d-a6a2-fac4c2b90c8b",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "cf0dc572-32bd-4119-a388-4934f630896f",
-                            ConcurrencyStamp = "44ae0f8d-36d4-4d7d-b2a1-6a0705cf25f6",
+                            ConcurrencyStamp = "ab7dd715-6837-4313-837f-245e7217db93",
                             Name = "DefaultUser",
                             NormalizedName = "USER"
                         });
@@ -96,10 +98,6 @@ namespace siteMain.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -154,20 +152,18 @@ namespace siteMain.Migrations
 
                     b.ToTable("AspNetUsers");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
                     b.HasData(
                         new
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2e291372-8f56-40cc-b3d2-1700da693974",
+                            ConcurrencyStamp = "2d4e9fa8-ea5f-4a37-b0de-d30dba2d5615",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIdae47+ZLvJyBoTKf39Utkl+NDA6wkAeMyWoGiR8PmLrEW8CFIU3iWrEEmmDzufOA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBzEMgjLGNqu8A9QQMUgLHKq9HvhsqHFvZ9YqkDPhMpVfsLg5WLzYyxkpbkkDnYCew==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -177,13 +173,13 @@ namespace siteMain.Migrations
                         {
                             Id = "2803a9ed-8c75-4696-a109-1848a86d40ec",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8396d4f3-d846-4f86-92a9-e3e9676c4f48",
+                            ConcurrencyStamp = "fbe0a1cd-082c-4027-bb44-df5da8a49940",
                             Email = "mishytka-02@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MISHYTKA-02@MAIL.RU",
                             NormalizedUserName = "MISHA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKtpxtEn6gqa+vLQ1TZjP21x8uMXVnSph7UEwGwaYPP6T3lhw5vkrW2XN7FGKSidZA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELyMD3ZogSatWSBbN70ENpRkCN0okQ9HxSswd/fcUsUQOgjMusSQsuwrIyLLxnhHNQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -365,7 +361,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2021, 5, 10, 9, 59, 15, 608, DateTimeKind.Utc).AddTicks(924),
+                            DateAdded = new DateTime(2021, 5, 9, 9, 14, 7, 65, DateTimeKind.Utc).AddTicks(3896),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -373,7 +369,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2021, 5, 10, 9, 59, 15, 608, DateTimeKind.Utc).AddTicks(3080),
+                            DateAdded = new DateTime(2021, 5, 9, 9, 14, 7, 65, DateTimeKind.Utc).AddTicks(6126),
                             Text = "Содержание заполняется администратором",
                             Title = "Наши услуги"
                         },
@@ -381,7 +377,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2021, 5, 10, 9, 59, 15, 608, DateTimeKind.Utc).AddTicks(3147),
+                            DateAdded = new DateTime(2021, 5, 9, 9, 14, 7, 65, DateTimeKind.Utc).AddTicks(6186),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
@@ -397,6 +393,9 @@ namespace siteMain.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("IdUser")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("RateFilm")
                         .HasColumnType("int");
 
@@ -406,23 +405,11 @@ namespace siteMain.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UsersId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("IdNumber");
 
                     b.HasIndex("ServiceItemId");
 
-                    b.HasIndex("UsersId");
-
                     b.ToTable("UserRate");
-                });
-
-            modelBuilder.Entity("siteMain.Service.User", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -481,10 +468,6 @@ namespace siteMain.Migrations
                     b.HasOne("siteMain.Domain.Entities.ServiceItem", "ServiceItem")
                         .WithMany("UserRates")
                         .HasForeignKey("ServiceItemId");
-
-                    b.HasOne("siteMain.Service.User", "Users")
-                        .WithMany()
-                        .HasForeignKey("UsersId");
                 });
 #pragma warning restore 612, 618
         }

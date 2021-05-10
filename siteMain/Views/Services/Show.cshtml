@@ -24,18 +24,9 @@
 <div>
     <br />
     <h3>Рейтинг фильма: @Model.AvgRateFilm</h3>
-    @*@ViewBag.IdFilm
-    <br />
-    @ViewBag.RateFilm
-    <br />
-    @ViewBag.IdUser
-    <br />
-    @ViewBag.UserName*@
-    
-    
-    <p>
+    <form asp-action="Mark" method="post" asp-controller="Services">
         <font size="4" color="red">Уже посмотрели фильм? Оставьте пожалуйста оценку</font>
-        <select>
+        <select name="MarkValue">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -48,6 +39,6 @@
             <option>10</option>
         </select>
         <input type="submit" value="Сохранить" />
-    </p>
+    </form>
 
 </div>
