@@ -7,7 +7,6 @@ using siteMain.Domain.Entities;
 
 namespace siteMain.Domain.Repositories.Abstract
 {
-    
     public interface IServiceItemsRepository
     {
         IQueryable<ServiceItem> GetServiceItems(); //выборка всех текстовых полей

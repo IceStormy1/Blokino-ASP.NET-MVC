@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using siteMain.Domain;
 
 namespace siteMain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210513144741__initial15")]
+    partial class _initial15
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,14 +51,14 @@ namespace siteMain.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "89f8260a-013b-44e5-a88c-b17795a4fa5b",
+                            ConcurrencyStamp = "4c505ae2-638b-4baa-bda2-598ef1ecb2c1",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "cf0dc572-32bd-4119-a388-4934f630896f",
-                            ConcurrencyStamp = "9d2d8732-38c2-4a42-90f3-5ed85f977ed9",
+                            ConcurrencyStamp = "bbc50e53-ae6f-4c76-8d37-506e84633e58",
                             Name = "DefaultUser",
                             NormalizedName = "USER"
                         });
@@ -96,10 +98,6 @@ namespace siteMain.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -154,20 +152,18 @@ namespace siteMain.Migrations
 
                     b.ToTable("AspNetUsers");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
                     b.HasData(
                         new
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c000e066-76de-4925-8cea-c641b289b06c",
+                            ConcurrencyStamp = "64a38ec1-6b82-4736-90cc-925d3c8c7f6e",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKyWLH28/i3K58LjON7NelVvUhfRlDI3hjYbOuwQxqYtPBCTSWCDGkO5e2+JgUmcaQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK6IxyQykiuD8fQVZ4b9Pv6HfL7qs4AGZsL2H10FonocmrPh6MBWEPKY2X8KEjARSQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -177,13 +173,13 @@ namespace siteMain.Migrations
                         {
                             Id = "2803a9ed-8c75-4696-a109-1848a86d40ec",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3daf19cf-8492-481a-bf06-1005d0f29046",
+                            ConcurrencyStamp = "baa90518-bdf7-4f11-b917-54a9a0c3ac8a",
                             Email = "mishytka-02@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MISHYTKA-02@MAIL.RU",
                             NormalizedUserName = "MISHA",
-                            PasswordHash = "AQAAAAEAACcQAAAAECHxwRUehzA+HzLvZdebQJ38eW73RYhHFtpe83k5bz/pNH7Ce5NI6d+XaRy31u9YIQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIL2cVszM42bASmtzM6IKl3vioo4a9MaRYpqDGWHdOozSAzCaXCgEcbYCC/D7uL9lA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -283,33 +279,6 @@ namespace siteMain.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("siteMain.Domain.Entities.RateUser", b =>
-                {
-                    b.Property<int>("IdNumber")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("IdFilm")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("RateFilm")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UsersId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdNumber");
-
-                    b.ToTable("RateUsers");
-                });
-
             modelBuilder.Entity("siteMain.Domain.Entities.ServiceItem", b =>
                 {
                     b.Property<Guid>("Id")
@@ -392,7 +361,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2021, 5, 14, 13, 2, 57, 88, DateTimeKind.Utc).AddTicks(3263),
+                            DateAdded = new DateTime(2021, 5, 13, 14, 47, 40, 659, DateTimeKind.Utc).AddTicks(1829),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -400,7 +369,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2021, 5, 14, 13, 2, 57, 88, DateTimeKind.Utc).AddTicks(5422),
+                            DateAdded = new DateTime(2021, 5, 13, 14, 47, 40, 659, DateTimeKind.Utc).AddTicks(3936),
                             Text = "Содержание заполняется администратором",
                             Title = "Наши услуги"
                         },
@@ -408,48 +377,10 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2021, 5, 14, 13, 2, 57, 88, DateTimeKind.Utc).AddTicks(5486),
+                            DateAdded = new DateTime(2021, 5, 13, 14, 47, 40, 659, DateTimeKind.Utc).AddTicks(3999),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
-                });
-
-            modelBuilder.Entity("siteMain.Domain.Entities.UserRates", b =>
-                {
-                    b.Property<int>("IdNumber")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("IdFilm")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("RateFilm")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UsersId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("IdNumber");
-
-                    b.HasIndex("IdFilm");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("UserRate");
-                });
-
-            modelBuilder.Entity("siteMain.Service.User", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -501,19 +432,6 @@ namespace siteMain.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("siteMain.Domain.Entities.UserRates", b =>
-                {
-                    b.HasOne("siteMain.Domain.Entities.ServiceItem", "ServiceItem")
-                        .WithMany("UserRates")
-                        .HasForeignKey("IdFilm")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("siteMain.Service.User", "Users")
-                        .WithMany()
-                        .HasForeignKey("UsersId");
                 });
 #pragma warning restore 612, 618
         }

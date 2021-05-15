@@ -9,7 +9,7 @@ using siteMain.Service;
 
 namespace siteMain.Domain.Entities
 {
-    public class UserRate
+    public class RateUser
     {
         [Key]
         public int IdNumber { get; set; }
@@ -18,12 +18,11 @@ namespace siteMain.Domain.Entities
 
         public string UserName { get; set; }
 
-        [DisallowNull]
-        public Guid Id { get; set; }
+        [Required]
+        public Guid IdFilm { get; set; }
+
+        public string Title { get; set; }
 
         public int RateFilm { get; set; }
-
-        public User Users { get; set; }
-        public ServiceItem ServiceItem { get; set; }
     }
 }

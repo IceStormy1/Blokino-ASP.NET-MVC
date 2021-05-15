@@ -30,8 +30,11 @@ namespace siteMain
             //подключаем конфиг из appsettings.json
             Configuration.Bind("Project", new Config()); // Project есть в файле appsettings.json
                                                          //подключаем наши интерфейсы и классы
+            
             services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
             services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
+            services.AddTransient<IUserRate, EFUserRate>();
+            services.AddTransient<IRateUser, EFRateUser>();
             services.AddTransient<DataManager>();
             //подключаем контекст БД
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));

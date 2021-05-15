@@ -7,11 +7,8 @@ using siteMain.Models;
 
 namespace siteMain.Domain.Repositories.Abstract
 {
-
-    public interface IUserRate
+    public interface IRateUser
     {
-        double GetUserRates(Guid id);
-        
-        void SaveUserRate(UserRates entity); // сохранить изменения
+        void SaveUserRate(RateUser entity); // сохранить изменения
     }
 }

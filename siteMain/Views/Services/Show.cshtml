@@ -7,9 +7,9 @@
 }
 
 <div>
-    <h2>
+    <h3>
         @Model.Title
-    </h2>
+    </h3>
     <h3>
         @Model.Subtitle
     </h3>
@@ -23,9 +23,9 @@
 </div>
 <div>
     <br />
-    <h3>Рейтинг фильма: @Model.AvgRateFilm</h3>
-    <form asp-action="Mark" method="post" asp-controller="Services">
-        <font size="4" color="red">Уже посмотрели фильм? Оставьте пожалуйста оценку</font>
+    <h3>Средний рейтинг фильма: @Model.AvgRateFilm</h3>
+    <form asp-action="Mark" method="post" asp-controller="Services" asp-route-id="@Model.Id">
+        <font size="4" color="red">Уже посмотрели фильм? Оставьте пожалуйста оценку &nbsp;&nbsp;&nbsp;</font>
         <select name="MarkValue">
             <option>1</option>
             <option>2</option>
