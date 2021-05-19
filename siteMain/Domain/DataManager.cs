@@ -22,5 +22,6 @@ namespace siteMain.Domain
             UserRate = textUserRate;
             RateUser = textRateUser;
         }
+
     }
 }

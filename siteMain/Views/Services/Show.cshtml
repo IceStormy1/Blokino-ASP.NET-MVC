@@ -1,11 +1,10 @@
-﻿@model ServiceItem
-@{
-    ViewBag.Title = Model.Metatitle;
-    ViewBag.Description = Model.MetaDescription;
-    ViewBag.Keywords = Model.MetaKeyWords;
-    ViewBag.AvgRate = Model.AvgRateFilm;
-}
-
+﻿@using siteMain.Domain
+@model ServiceItem
+@{ ViewBag.Title = Model.Metatitle;
+                ViewBag.Description = Model.MetaDescription;
+                ViewBag.Keywords = Model.MetaKeyWords;
+                ViewBag.AvgRate = Model.AvgRateFilm; }
+@inject DataManager dataManager;
 <div>
     <h3>
         @Model.Title
@@ -14,16 +13,22 @@
         @Model.Subtitle
     </h3>
     <div>
-        <img class="img-block" src="~/images/@Model.TitleImagePath"/>
+        <img class="img-block" src="~/images/@Model.TitleImagePath" />
     </div>
 </div>
 <div>
-    <br/>
+    <br />
     @Html.Raw(Model.Text)
 </div>
 <div>
     <br />
     <h3>Средний рейтинг фильма: @Model.AvgRateFilm</h3>
+    @if (dataManager.UserRate.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count()==1)
+    {
+        <font size="4" color="red">Спасибо за вашу оценку!</font>
+        <font size="4" color="red">Ваша оценка: @dataManager.UserRate.GetUserMark(Model.Id.ToString(), User.Identity.Name).ToString()</font>
+    }else
+    {
     <form asp-action="Mark" method="post" asp-controller="Services" asp-route-id="@Model.Id">
         <font size="4" color="red">Уже посмотрели фильм? Оставьте пожалуйста оценку &nbsp;&nbsp;&nbsp;</font>
         <select name="MarkValue">
@@ -40,5 +45,5 @@
         </select>
         <input type="submit" value="Сохранить" />
     </form>
-
+    }
 </div>

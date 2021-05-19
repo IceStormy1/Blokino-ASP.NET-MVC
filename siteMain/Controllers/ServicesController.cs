@@ -48,7 +48,6 @@ namespace siteMain.Controllers
         [HttpPost]
         public IActionResult Mark(Mark mark, UserRates model, Guid id)
         {
-
             var serviceItem = dataManager.ServiceItems.GetServiceItemById(id);
             var avg = new AVGRateFilm(dataManager);
             
@@ -61,27 +60,7 @@ namespace siteMain.Controllers
            
             dataManager.UserRate.SaveUserRate(model);
             avg.UpdateAVG(serviceItem.Id);
-            return RedirectToAction(nameof(ServicesController.Index), nameof(ServicesController).CutController());
+            return RedirectToAction(nameof(Index), nameof(ServicesController).CutController());
         }
-        //[HttpPost]
-        //public IActionResult Mark(Mark mark, RateUser model, Guid id)
-        //{
-
-        //    var serviceItem = dataManager.ServiceItems.GetServiceItemById(id);
-
-        //    model.UsersId = _manager.GetUserId(User).ToString();
-        //    model.UserName = _manager.GetUserName(User).ToString();
-        //    model.RateFilm = mark.MarkValue;
-        //    model.IdFilm = serviceItem.Id;
-        //    model.Title = serviceItem.Title;
-        //    model.RateFilm = mark.MarkValue;
-
-        //    dataManager.RateUser.SaveUserRate(model);
-
-        //    return RedirectToAction(nameof(HomeControllerDef.Index), nameof(HomeControllerDef).CutController());
-        //   return Response.Redirect(Request.RawUrl);
-
-        //}
-
     }
 }

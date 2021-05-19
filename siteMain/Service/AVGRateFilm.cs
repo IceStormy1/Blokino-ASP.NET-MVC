@@ -23,15 +23,11 @@ namespace siteMain.Service
 
         public void UpdateAVG(Guid id)
         {
-            //var customer = context.ServiceItems.First(c => c.Id == id);
+           
             var serviceItem = dataManager.ServiceItems.GetServiceItemById(id);
             var userRate = dataManager.UserRate.GetUserRates(id);
-            //var upd = userRate
-            //var AVG = context.ServiceItems.AverageAsync(c=>c.UserRates.)
-            //var UpdateAvg = context.ServiceItems.Average(c => c.AvgRateFilm);
-            //var UpdateAvg = context.ServiceItems.Where(u => u.Id == id)
-           //     .Average(context.UserRate.Where(p => p.RateFilm));
-           serviceItem.AvgRateFilm = (float)userRate;                                                                                                                                                                                                                                                           
+            
+           serviceItem.AvgRateFilm = (float)Math.Round(userRate,2);                                                                                                                                                                                                                                                           
             
             // Сохранить изменения
             dataManager.ServiceItems.SaveServiceItem(serviceItem);
