@@ -19,6 +19,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
 
         public IQueryable<ServiceItem> GetServiceItems()
         {
+            
             return context.ServiceItems;
         }
 

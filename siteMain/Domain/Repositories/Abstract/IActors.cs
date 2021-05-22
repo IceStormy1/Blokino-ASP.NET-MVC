@@ -9,6 +9,9 @@ namespace siteMain.Domain.Repositories.Abstract
 {
     public interface IActors
     {
-        void SaveUserRate(Actors entity); // сохранить изменения
+        IQueryable<Actors> GetActors();
+        public Actors GetActorsById(Guid id);
+        public void SaveActors(Actors entity);
+        public void DeleteActors(Guid id);
     }
 }

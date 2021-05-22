@@ -41,7 +41,7 @@ namespace siteMain.Controllers
             {
                 return View("Show", dataManager.ServiceItems.GetServiceItemById(id));
             }
-
+            
             ViewBag.TextField = dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
             return View(dataManager.ServiceItems.GetServiceItems());
         }

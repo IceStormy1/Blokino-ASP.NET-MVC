@@ -13,7 +13,7 @@
             <ul>
                 <li><a href="/" class="active">Главная</a></li>
                 <li><a asp-area="" asp-controller="Services" asp-action="Index">Фильмы</a></li>
-                <li><a href="/">О нас</a></li>
+                <li><a asp-area="" asp-controller="Actors" asp-action="Index">Актеры</a></li>
                 <li><a asp-area="" asp-controller="HomeControllerDef" asp-action="Contacts">Контакты</a></li>
                 @if (User.Identity.Name == "admin")
                 {

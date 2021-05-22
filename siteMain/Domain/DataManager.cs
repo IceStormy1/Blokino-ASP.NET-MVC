@@ -13,14 +13,14 @@ namespace siteMain.Domain
         public  IServiceItemsRepository ServiceItems { get; set; }
        
         public IUserRate UserRate { get; set; }
-        public IActors RateUser { get; set; }
+        public IActors Actors { get; set; }
 
-        public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository textServiceItemsRepository,IUserRate textUserRate, IActors textRateUser)
+        public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository textServiceItemsRepository, IUserRate textUserRate, IActors textActors)
         {
             TextFields = textFieldsRepository;
             ServiceItems = textServiceItemsRepository;
             UserRate = textUserRate;
-            RateUser = textRateUser;
+            Actors = textActors;
         }
 
     }

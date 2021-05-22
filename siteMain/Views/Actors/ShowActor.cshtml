@@ -1,0 +1,49 @@
+﻿@using siteMain.Domain
+@model Actors
+@{ ViewBag.Title = Model.Metatitle;
+    ViewBag.Description = Model.MetaDescription;
+    ViewBag.Keywords = Model.MetaKeyWords;
+    ViewBag.AvgRate = Model.AvgRateActor; }
+@inject DataManager dataManager;
+<div>
+    <h3>
+        @Model.Title
+    </h3>
+    <h3>
+        @Model.Subtitle
+    </h3>
+    <div>
+        <img class="img-block" src="~/images/@Model.TitleImagePath" />
+    </div>
+</div>
+<div>
+    <br />
+    @Html.Raw(Model.Text)
+</div>
+<div>
+    <br />
+    <h3>Средний рейтинг актера: @Model.AvgRateActor</h3>
+    @if (dataManager.UserRate.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count()==1)
+    {
+        <font size="4" color="red">Спасибо за вашу оценку!</font>
+        <font size="4" color="red">Ваша оценка: @dataManager.UserRate.GetUserMark(Model.Id.ToString(), User.Identity.Name).ToString()</font>
+    }else
+    {
+        <form asp-action="Mark" method="post" asp-controller="Services" asp-route-id="@Model.Id">
+            <font size="4" color="red">Уже посмотрели фильм? Оставьте пожалуйста оценку &nbsp;&nbsp;&nbsp;</font>
+            <select name="MarkValue">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+            <input type="submit" value="Сохранить" />
+        </form>
+    }
+</div>
