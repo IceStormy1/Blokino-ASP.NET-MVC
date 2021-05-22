@@ -14,8 +14,7 @@ namespace siteMain.Service
     {
        
         private readonly DataManager dataManager;
-        UserManager<IdentityUser> _manager;
-       
+        
         public AVGRateFilm(DataManager dataManager)
         {
             this.dataManager = dataManager;

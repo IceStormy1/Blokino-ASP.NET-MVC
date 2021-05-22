@@ -7,14 +7,14 @@ using siteMain.Domain.Repositories.Abstract;
 
 namespace siteMain.Domain.Repositories.EntityFramework
 {
-    public class EFRateUser:IRateUser
+    public class EFActors:IActors
     {
         private readonly AppDbContext context;
-        public EFRateUser(AppDbContext context)
+        public EFActors(AppDbContext context)
         {
             this.context = context;
         }
-        public void SaveUserRate(RateUser entity)
+        public void SaveUserRate(Actors entity)
         {
             //context.Entry(entity).State = EntityState.Added;
             context.Add(entity);

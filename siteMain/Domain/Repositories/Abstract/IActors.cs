@@ -7,8 +7,8 @@ using siteMain.Models;
 
 namespace siteMain.Domain.Repositories.Abstract
 {
-    public interface IRateUser
+    public interface IActors
     {
-        void SaveUserRate(RateUser entity); // сохранить изменения
+        void SaveUserRate(Actors entity); // сохранить изменения
     }
 }

@@ -25,6 +25,7 @@ namespace siteMain.Domain.Entities
         public float AvgRateFilm { get; set; }
 
         public List<UserRates> UserRates { get; set; }
+        public List<FilmsAndActors> FilmsAndActors { get; set; }
     }
     
 }

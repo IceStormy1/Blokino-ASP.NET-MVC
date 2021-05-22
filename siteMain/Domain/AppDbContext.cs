@@ -17,7 +17,8 @@ namespace siteMain.Domain
         public DbSet<TextFields> TextFields { get; set; }
         public DbSet<ServiceItem> ServiceItems { get; set; }
         public DbSet<UserRates> UserRate { get; set; }
-        public DbSet<RateUser> RateUsers { get; set; }
+        public DbSet<Actors> Actors { get; set; }
+        public DbSet<FilmsAndActors> FilmsAndActors { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

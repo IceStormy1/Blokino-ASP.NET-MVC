@@ -13,9 +13,9 @@ namespace siteMain.Domain
         public  IServiceItemsRepository ServiceItems { get; set; }
        
         public IUserRate UserRate { get; set; }
-        public IRateUser RateUser { get; set; }
+        public IActors RateUser { get; set; }
 
-        public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository textServiceItemsRepository,IUserRate textUserRate, IRateUser textRateUser)
+        public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository textServiceItemsRepository,IUserRate textUserRate, IActors textRateUser)
         {
             TextFields = textFieldsRepository;
             ServiceItems = textServiceItemsRepository;
