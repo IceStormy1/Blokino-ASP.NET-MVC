@@ -35,6 +35,7 @@ namespace siteMain
             services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
             services.AddTransient<IUserRate, EFUserRate>();
             services.AddTransient<IActors, EFActors>();
+            services.AddTransient<IUserRateActors, EFUserRateActors>();
             services.AddTransient<DataManager>();
             //подключаем контекст БД
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));

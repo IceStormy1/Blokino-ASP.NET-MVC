@@ -19,6 +19,7 @@ namespace siteMain.Domain
         public DbSet<UserRates> UserRate { get; set; }
         public DbSet<Actors> Actors { get; set; }
         public DbSet<FilmsAndActors> FilmsAndActors { get; set; }
+        public DbSet<UserRatesActors> UserRatesActors { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

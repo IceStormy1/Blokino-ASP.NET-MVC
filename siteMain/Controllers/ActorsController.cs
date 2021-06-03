@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using siteMain.Domain;
+using siteMain.Domain.Entities;
+using siteMain.Models;
+using siteMain.Service;
 
 namespace siteMain.Controllers
 {
@@ -29,8 +32,26 @@ namespace siteMain.Controllers
                 return View("ShowActor", dataManager.Actors.GetActorsById(id));
             }
 
-             ViewBag.TextField = dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
+            ViewBag.TextField = dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
             return View(dataManager.Actors.GetActors());
+        }
+        [HttpPost]
+        public IActionResult Mark(Mark mark, UserRatesActors model, Guid id)
+        {
+           // var serviceItem = dataManager.ServiceItems.GetServiceItemById(id);
+            var actors = dataManager.Actors.GetActorsById(id);
+            var avg = new AVGRateActor(dataManager);
+
+            model.UsersId = _manager.GetUserId(User).ToString();
+            model.UserName = _manager.GetUserName(User).ToString();
+            model.RateActor = mark.MarkValue;
+            model.IdActor = actors.Id;
+            model.Title = actors.Title;
+            //model.RateFilm = mark.MarkValue;
+
+            dataManager.UserRateActors.SaveUserRate(model);
+            avg.UpdateAVG(actors.Id);
+            return RedirectToAction(nameof(Index), nameof(ActorsController).CutController());
         }
     }
 }
