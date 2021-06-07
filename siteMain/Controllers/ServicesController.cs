@@ -24,9 +24,7 @@ namespace siteMain.Controllers
     public class ServicesController : Controller
     {
         private readonly DataManager dataManager;
-        private readonly AppDbContext context;
         UserManager<IdentityUser> _manager;
-        
         // private readonly IWebHostEnvironment hostingEnvironment;
         public ServicesController(DataManager dataManager, UserManager<IdentityUser> manager)
         {
@@ -60,6 +58,7 @@ namespace siteMain.Controllers
            
             dataManager.UserRate.SaveUserRate(model);
             avg.UpdateAVG(serviceItem.Id);
+
             return RedirectToAction(nameof(Index), nameof(ServicesController).CutController());
         }
     }

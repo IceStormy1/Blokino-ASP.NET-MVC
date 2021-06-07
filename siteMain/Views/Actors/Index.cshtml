@@ -7,18 +7,27 @@
     ViewBag.Keywords = textField.MetaKeyWords;
 }
 <div>
-    @if (Model.Any())
-    {
-        <ul class="big-image-list">
-            @foreach (Actors entity in Model)
-            {
-                <li>
-                    <br /><hr />
-                    <h4>@entity.Title</h4>
-                    <a asp-area="" asp-controller="Actors" asp-action="Index" asp-route-id="@entity.Id">
-                        <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
-                    </a>
-                </li>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Сортировать по популярности", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th></th>
+        </tr>
+        </table>
+        @if (Model.Any())
+        {
+            <ul class="big-image-list">
+                @foreach (Actors entity in Model)
+                {
+                    <li>
+                        <br /><hr />
+                        <h4>@entity.Title</h4>
+                        <a asp-area="" asp-controller="Actors" asp-action="Index" asp-route-id="@entity.Id">
+                            <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
+                        </a>
+                    </li>
+                }
+            </ul>
 }
-        </ul>}
 </div>
