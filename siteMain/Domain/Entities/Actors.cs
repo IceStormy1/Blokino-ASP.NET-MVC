@@ -15,7 +15,6 @@ namespace siteMain.Domain.Entities
         [Display(Name = "Имя актера")]
         public override string Title { get; set; }
 
-
         [Display(Name = "Краткая биография актера")]
         public override string Subtitle { get; set; }
 

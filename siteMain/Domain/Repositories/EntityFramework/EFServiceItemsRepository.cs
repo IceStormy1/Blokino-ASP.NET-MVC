@@ -27,6 +27,10 @@ namespace siteMain.Domain.Repositories.EntityFramework
         {
             return context.ServiceItems.FirstOrDefault(x => x.Id == id);
         }
+        public ServiceItem GetServiceItemByFilmName(string FilmName)
+        {
+            return context.ServiceItems.FirstOrDefault(x => x.Title == FilmName);
+        }
 
         public void SaveServiceItem(ServiceItem entity)
         {

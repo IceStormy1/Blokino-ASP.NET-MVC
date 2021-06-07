@@ -29,19 +29,30 @@ namespace siteMain.Areas.Admin.Controllers
             return View(entity);
         }
         [HttpPost]
-        public IActionResult EditActor(Actors model, IFormFile titleImageFile)
+        public IActionResult EditActor(Actors model, IFormFile titleImageFile, string [] FilmName, FilmsAndActors filmsAndActors)
         {
             if (ModelState.IsValid)
             {
                 if (titleImageFile != null)
                 {
                     model.TitleImagePath = titleImageFile.FileName;
-                    using (var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create))
-                    {
-                        titleImageFile.CopyTo(stream);
-                    }
+                    using var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create);
+                    titleImageFile.CopyTo(stream);
                 }
                 dataManager.Actors.SaveActors(model);
+                foreach (var film in FilmName)
+                {
+                    var films = dataManager.ServiceItems.GetServiceItemByFilmName(film);
+                    var NewfilmsAndActors = new FilmsAndActors
+                    {
+                        IdFilm = films.Id, 
+                        Title = films.Title, 
+                        IdActor = model.Id, 
+                        NameActor = model.Title
+                    };
+                    dataManager.FilmsAndActors.SaveFilmsAndActors(NewfilmsAndActors);
+                }
+                
                 return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }
             return View(model);
