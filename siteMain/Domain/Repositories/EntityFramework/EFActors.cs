@@ -27,15 +27,17 @@ namespace siteMain.Domain.Repositories.EntityFramework
         }
         public void SaveActors(Actors entity)
         {
-            if (entity.Id == default)
-                context.Entry(entity).State = EntityState.Added;
-            else
-                context.Entry(entity).State = EntityState.Modified;
+            context.Entry(entity).State = entity.Id == default ? EntityState.Added : EntityState.Modified;
             context.SaveChanges();
         }
 
         public void DeleteActors(Guid id)
         {
+            var test = context.FilmsAndActors.Where(c => c.IdActor == id);
+            foreach (var entity in test)
+            {
+                context.FilmsAndActors.Remove(entity);
+            }
             context.Actors.Remove(new Actors() { Id = id });
             context.SaveChanges();
         }

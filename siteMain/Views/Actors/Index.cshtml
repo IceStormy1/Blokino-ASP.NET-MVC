@@ -20,13 +20,16 @@
             <ul class="big-image-list">
                 @foreach (Actors entity in Model)
                 {
-                    <li>
-                        <br /><hr />
-                        <h4>@entity.Title</h4>
-                        <a asp-area="" asp-controller="Actors" asp-action="Index" asp-route-id="@entity.Id">
-                            <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
-                        </a>
-                    </li>
+                    <div>
+                <li>
+                    <br /><hr />
+                    <h4>@entity.Title</h4>
+                    <a asp-area="" asp-controller="Actors" asp-action="Index" asp-route-id="@entity.Id">
+                        <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
+                    </a>
+                    <h4>Рейтинг актера: @entity.AvgRateActor</h4>
+                </li>
+                    </div>
                 }
             </ul>
 }

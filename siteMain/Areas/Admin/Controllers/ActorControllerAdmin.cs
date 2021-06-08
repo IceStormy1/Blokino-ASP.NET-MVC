@@ -61,6 +61,7 @@ namespace siteMain.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(Guid id)
         {
+            //dataManager.FilmsAndActors.DeleteFilmAndActors(id);
             dataManager.Actors.DeleteActors(id);
             return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
         }

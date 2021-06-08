@@ -49,8 +49,8 @@ namespace siteMain.Controllers
             var serviceItem = dataManager.ServiceItems.GetServiceItemById(id);
             var avg = new AVGRateFilm(dataManager);
             
-            model.UsersId = _manager.GetUserId(User).ToString();
-            model.UserName = _manager.GetUserName(User).ToString();
+            model.UsersId = _manager.GetUserId(User);
+            model.UserName = _manager.GetUserName(User);
             model.RateFilm = mark.MarkValue;
             model.IdFilm = serviceItem.Id;
             model.Title = serviceItem.Title;

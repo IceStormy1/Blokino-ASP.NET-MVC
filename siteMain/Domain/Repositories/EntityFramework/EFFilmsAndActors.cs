@@ -21,5 +21,10 @@ namespace siteMain.Domain.Repositories.EntityFramework
             context.Add(entity);
             context.SaveChanges();
         }
+
+       public IQueryable<FilmsAndActors> GetFilmsAndActors()
+        {
+            return context.FilmsAndActors;
+        }
     }
 }
