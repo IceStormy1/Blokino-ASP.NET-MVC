@@ -33,7 +33,7 @@ namespace siteMain.Controllers
             
         }
         
-        public IActionResult Index(Guid id)
+        public IActionResult Index(Guid id, string sortOrder)
         {
             if (id != default)
             {
@@ -41,7 +41,20 @@ namespace siteMain.Controllers
             }
             
             ViewBag.TextField = dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
-            return View(dataManager.ServiceItems.GetServiceItems());
+            ViewBag.DateSortParm = sortOrder == "Avg" ? "Avg" : "avg_desc";
+            var sort = dataManager.ServiceItems.GetServiceItems();
+
+            switch (sortOrder)
+            {
+                case "avg_desc":
+                    sort = sort.OrderByDescending(s => s.AvgRateFilm);
+                    break;
+                case "Avg":
+                    sort = sort.OrderBy(s => s.AvgRateFilm);
+                    break;
+
+            }
+            return View(sort);
         }
         [HttpPost]
         public IActionResult Mark(Mark mark, UserRates model, Guid id)

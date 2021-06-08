@@ -34,19 +34,19 @@ namespace siteMain.Controllers
 
             ViewBag.TextField = dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
             ViewBag.DateSortParm = sortOrder == "Avg" ? "Avg": "avg_desc";
-            var students = dataManager.Actors.GetActors();
+            var sort = dataManager.Actors.GetActors();
             
             switch (sortOrder)
             {
                 case "avg_desc":
-                    students = students.OrderByDescending(s => s.AvgRateActor);
+                    sort = sort.OrderByDescending(s => s.AvgRateActor);
                     break;
                 case "Avg":
-                    students = students.OrderBy(s => s.AvgRateActor);
+                    sort = sort.OrderBy(s => s.AvgRateActor);
                     break; 
                     
             }
-            return View(students);
+            return View(sort);
             //return View(dataManager.Actors.GetActors());
         }
         [HttpPost]

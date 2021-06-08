@@ -8,22 +8,30 @@
 }
 
 <div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Сортировать по популярности", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th></th>
+        </tr>
+    </table>
     @if (Model.Any())
     {
-    <ul class="big-image-list">
-        @foreach (ServiceItem entity in Model)
+        <ul class="big-image-list">
+            @foreach (ServiceItem entity in Model)
             {
-        <li>
-            <br /><hr />
-            <h4>@entity.Title</h4>
-            <p class="">@entity.Subtitle</p>
-            <a asp-area="" asp-controller="Services" asp-action="Index" asp-route-id="@entity.Id">
-                <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
-            </a>
-
-        </li>
-}
-    </ul>}
+                <li>
+                    <br/><hr/>
+                    <h4>@entity.Title</h4>
+                    <p class="">@entity.Subtitle</p>
+                    <a asp-area="" asp-controller="Services" asp-action="Index" asp-route-id="@entity.Id">
+                        <img src="~/images/@entity.TitleImagePath" alt="" class="left"/>
+                    </a>
+                    <h4>Рейтинг фильма: @entity.AvgRateFilm</h4>
+                </li>
+            }
+        </ul>}
 </div>
 
 
