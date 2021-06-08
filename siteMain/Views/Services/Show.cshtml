@@ -5,6 +5,7 @@
                 ViewBag.Keywords = Model.MetaKeyWords;
                 ViewBag.AvgRate = Model.AvgRateFilm; }
 @inject DataManager dataManager;
+@inject AppDbContext context;
 <div>
     <h3>
         @Model.Title
@@ -46,4 +47,11 @@
         <input type="submit" value="Сохранить" />
     </form>
     }
+    <h3>
+        Актеры, принявшие участие в данном фильме:<br/>
+        @foreach (var actors in context.FilmsAndActors.Where(c => c.IdFilm == Model.Id))
+        {
+        <font size="4" color="red">@actors.NameActor</font><br/>
+        }
+    </h3>
 </div>
