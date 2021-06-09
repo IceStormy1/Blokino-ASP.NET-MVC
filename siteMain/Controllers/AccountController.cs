@@ -52,7 +52,6 @@ namespace siteMain.Controllers
                         {
                             return Redirect(returnUrl ?? "/");
                         }
-                        
                     }
                 }
                 ModelState.AddModelError(nameof(LoginViewModel.UserName), "Неверный логин или пароль");
@@ -86,6 +85,7 @@ namespace siteMain.Controllers
                     LockoutEnd = null, 
                     LockoutEnabled = false,
                 };
+
                 var createResult = await userManager.CreateAsync(user, model.PasswordReg);
 
                 if (createResult.Succeeded)
@@ -93,7 +93,7 @@ namespace siteMain.Controllers
                     await signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "HomeControllerDef");
                 }
-                else//иначе
+                else
                 {
                     foreach (var identityError in createResult.Errors)
                     {
@@ -101,7 +101,6 @@ namespace siteMain.Controllers
                     }
                 }
             }
-
             return View(model);
         }
 

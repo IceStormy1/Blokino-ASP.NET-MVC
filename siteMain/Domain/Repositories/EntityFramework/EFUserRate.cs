@@ -24,7 +24,6 @@ namespace siteMain.Domain.Repositories.EntityFramework
 
         public void SaveUserRate(UserRates entity)
         {
-            //context.Entry(entity).State = EntityState.Added;
             context.Add(entity);
             context.SaveChanges();
         }
@@ -40,6 +39,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
             
             return context.UserRate.Where(x => x.IdFilm.ToString() == idFilm).Where(c => c.UserName == NameUser);
         }
+
         public int GetUserMark(string idFilm, string NameUser)
         {
             return context.UserRate.Where(x => x.IdFilm.ToString() == idFilm).Where(c => c.UserName == NameUser).Select(b=>b.RateFilm).First();

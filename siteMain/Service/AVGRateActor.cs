@@ -17,13 +17,11 @@ namespace siteMain.Service
 
         public void UpdateAVG(Guid id)
         {
-
             var actors = dataManager.Actors.GetActorsById(id);
             var userRateActor = dataManager.UserRateActors.GetUserRates(id);
 
             actors.AvgRateActor = (float)Math.Round(userRateActor, 2);
 
-            // Сохранить изменения
             dataManager.Actors.SaveActors(actors);
         }
     }

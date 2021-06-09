@@ -11,6 +11,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
     public class EFActors:IActors
     {
         private readonly AppDbContext context;
+
         public EFActors(AppDbContext context)
         {
             this.context = context;
@@ -34,10 +35,12 @@ namespace siteMain.Domain.Repositories.EntityFramework
         public void DeleteActors(Guid id)
         {
             var test = context.FilmsAndActors.Where(c => c.IdActor == id);
+
             foreach (var entity in test)
             {
                 context.FilmsAndActors.Remove(entity);
             }
+
             context.Actors.Remove(new Actors() { Id = id });
             context.SaveChanges();
         }

@@ -12,7 +12,6 @@ namespace siteMain.Service
 {
     public class AVGRateFilm
     {
-       
         private readonly DataManager dataManager;
         
         public AVGRateFilm(DataManager dataManager)
@@ -22,13 +21,11 @@ namespace siteMain.Service
 
         public void UpdateAVG(Guid id)
         {
-           
             var serviceItem = dataManager.ServiceItems.GetServiceItemById(id);
             var userRate = dataManager.UserRate.GetUserRates(id);
             
            serviceItem.AvgRateFilm = (float)Math.Round(userRate,2);                                                                                                                                                                                                                                                           
-            
-            // Сохранить изменения
+           
             dataManager.ServiceItems.SaveServiceItem(serviceItem);
         }
     }

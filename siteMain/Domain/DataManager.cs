@@ -16,6 +16,7 @@ namespace siteMain.Domain
         public IActors Actors { get; set; }
         public IUserRateActors UserRateActors { get; set; }
         public IFilmsAndActors FilmsAndActors { get; set; }
+
         public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository textServiceItemsRepository, IUserRate textUserRate, IActors textActors, IUserRateActors textUserRateActors, IFilmsAndActors textFilmsAndActors)
         {
             TextFields = textFieldsRepository;
