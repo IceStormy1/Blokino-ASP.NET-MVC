@@ -20,10 +20,8 @@ namespace siteMain
 {
     public class Startup
     {
-
         public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration) => Configuration = configuration;
-        
         
         public void ConfigureServices(IServiceCollection services)
         {
@@ -38,8 +36,10 @@ namespace siteMain
             services.AddTransient<IUserRateActors, EFUserRateActors>();
             services.AddTransient<IFilmsAndActors, EFFilmsAndActors>();
             services.AddTransient<DataManager>();
+
             //подключаем контекст Ѕƒ
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
+
             //настраиваем identity сисему 
             services.AddIdentity<IdentityUser, IdentityRole>(opts =>
             {
@@ -50,6 +50,7 @@ namespace siteMain
                 opts.Password.RequireUppercase = false;
                 opts.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
             //настраиваем authentication cookie
             services.ConfigureApplicationCookie(options =>
             {
@@ -59,13 +60,13 @@ namespace siteMain
                 options.AccessDeniedPath = "/account/accessdenied";
                 options.SlidingExpiration = true;
             });
+
             //настраиваем политику авторизации дл€ Admin area
             services.AddAuthorization(x =>
             {
                 x.AddPolicy("AdminArea", policy => { policy.RequireRole("admin"); });
             });
             // добавл€ем сервисы дл€ контроллеров и представлений (MVC)
-
 
             //совместимость с версией 3.0
             services.AddControllersWithViews(x =>
@@ -76,7 +77,6 @@ namespace siteMain
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0).AddSessionStateTempDataProvider();
         }
 
-        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -88,7 +88,6 @@ namespace siteMain
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.UseEndpoints(endpoints =>
             {

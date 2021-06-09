@@ -25,7 +25,7 @@ namespace siteMain.Controllers
     {
         private readonly DataManager dataManager;
         UserManager<IdentityUser> _manager;
-        // private readonly IWebHostEnvironment hostingEnvironment;
+        
         public ServicesController(DataManager dataManager, UserManager<IdentityUser> manager)
         {
             this.dataManager = dataManager;

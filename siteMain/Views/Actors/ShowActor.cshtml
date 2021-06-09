@@ -5,6 +5,7 @@
     ViewBag.Keywords = Model.MetaKeyWords;
     ViewBag.AvgRate = Model.AvgRateActor; }
 @inject DataManager dataManager;
+@inject AppDbContext context;
 <div>
     <h3>
         @Model.Title
@@ -23,11 +24,12 @@
 <div>
     <br />
     <h3>Средний рейтинг актера: @Model.AvgRateActor</h3>
-    @if (dataManager.UserRateActors.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count()==1)
+    @if (dataManager.UserRateActors.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count() == 1)
     {
         <font size="4" color="red">Спасибо за вашу оценку!</font>
         <font size="4" color="red">Ваша оценка: @dataManager.UserRateActors.GetUserMark(Model.Id.ToString(), User.Identity.Name).ToString()</font>
-    }else
+    }
+    else
     {
         <form asp-action="Mark" method="post" asp-controller="Actors" asp-route-id="@Model.Id">
             <font size="4" color="red">Уже посмотрели фильм? Оставьте пожалуйста оценку &nbsp;&nbsp;&nbsp;</font>
@@ -46,4 +48,11 @@
             <input type="submit" value="Сохранить" />
         </form>
     }
+    <h3>
+        Фильмы, в которых участвовал актер: <br />
+        @foreach (var actors in context.FilmsAndActors.Where(c => c.IdActor == Model.Id))
+        {
+            <font size="4" color="red">@actors.Title</font><br />
+        }
+    </h3>
 </div>

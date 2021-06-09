@@ -17,7 +17,6 @@ namespace siteMain.Controllers
         private readonly AppDbContext context;
         UserManager<IdentityUser> _manager;
 
-        // private readonly IWebHostEnvironment hostingEnvironment;
         public ActorsController(DataManager dataManager, UserManager<IdentityUser> manager)
         {
             this.dataManager = dataManager;
@@ -61,10 +60,10 @@ namespace siteMain.Controllers
             model.RateActor = mark.MarkValue;
             model.IdActor = actors.Id;
             model.Title = actors.Title;
-            //model.RateFilm = mark.MarkValue;
 
             dataManager.UserRateActors.SaveUserRate(model);
             avg.UpdateAVG(actors.Id);
+
             return RedirectToAction(nameof(Index), nameof(ActorsController).CutController());
         }
     }

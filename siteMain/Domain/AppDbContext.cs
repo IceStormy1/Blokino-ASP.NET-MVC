@@ -20,6 +20,7 @@ namespace siteMain.Domain
         public DbSet<Actors> Actors { get; set; }
         public DbSet<FilmsAndActors> FilmsAndActors { get; set; }
         public DbSet<UserRatesActors> UserRatesActors { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -90,7 +91,6 @@ namespace siteMain.Domain
                 CodeWord = "PageContacts",
                 Title = "Контакты"
             });
-            
         }
     }
 }
