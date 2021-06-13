@@ -27,7 +27,7 @@ namespace siteMain
         {
             //подключаем конфиг из appsettings.json
             Configuration.Bind("Project", new Config()); // Project есть в файле appsettings.json
-                                                         //подключаем наши интерфейсы и классы
+                                                         //подключаем интерфейсы и классы
             
             services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
             services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
