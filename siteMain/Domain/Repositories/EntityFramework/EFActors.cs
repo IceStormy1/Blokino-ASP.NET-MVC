@@ -24,7 +24,9 @@ namespace siteMain.Domain.Repositories.EntityFramework
 
         public Actors GetActorsById(Guid id)
         {
-            return context.Actors.FirstOrDefault(x => x.Id == id);
+            return context.Actors
+                .Include(x => x.FilmsAndActors.Select(y => y.ServiceItem))
+                .FirstOrDefault(x => x.Id == id);
         }
         public void SaveActors(Actors entity)
         {

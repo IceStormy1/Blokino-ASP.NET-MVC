@@ -28,7 +28,17 @@ namespace siteMain.Controllers
         {
             if (id != default)
             {
-                return View("ShowActor", dataManager.Actors.GetActorsById(id));
+                var actor = dataManager.Actors.GetActorsById(id);
+
+                return View("ShowActor", new ActorsEdit
+                {
+                    Id = actor.Id,
+                    Title = actor.Title,
+                    FilmsAndActors = actor.FilmsAndActors.Select(x => new FilmsAndActorsModel
+                    {
+                        Title = x.ServiceItem.Title
+                    }).ToList()
+                });
             }
 
             ViewBag.TextField = dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
