@@ -1,5 +1,5 @@
 ﻿@using siteMain.Domain
-@model Actors
+@model ActorsEdit
 @{ ViewBag.Title = Model.Metatitle;
     ViewBag.Description = Model.MetaDescription;
     ViewBag.Keywords = Model.MetaKeyWords;
@@ -50,7 +50,7 @@
     }
     <h3>
         Фильмы, в которых участвовал актер: <br />
-        @foreach (var actors in context.FilmsAndActors.Where(c => c.IdActor == Model.Id))
+        @foreach (var actors in Model.FilmsAndActors)
         {
             <font size="4" color="red">@actors.Title</font><br />
         }
