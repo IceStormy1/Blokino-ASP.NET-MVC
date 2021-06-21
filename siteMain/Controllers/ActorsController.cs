@@ -21,7 +21,6 @@ namespace siteMain.Controllers
         {
             this.dataManager = dataManager;
             this._manager = manager;
-
         }
 
         public IActionResult Index(Guid id, string sortOrder)
@@ -29,14 +28,16 @@ namespace siteMain.Controllers
             if (id != default)
             {
                 var actor = dataManager.Actors.GetActorsById(id);
-
+                
                 return View("ShowActor", new ActorsEdit
                 {
                     Id = actor.Id,
                     Title = actor.Title,
+                    TitleImagePath = actor.TitleImagePath,
+                    Text = actor.Text,
                     FilmsAndActors = actor.FilmsAndActors.Select(x => new FilmsAndActorsModel
                     {
-                        Title = x.ServiceItem.Title
+                        Title = x.ServiceItem.Title,
                     }).ToList()
                 });
             }
