@@ -10,8 +10,8 @@ using siteMain.Domain;
 namespace siteMain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210428145243__initial3")]
-    partial class _initial3
+    [Migration("20210621112323__initial1")]
+    partial class _initial1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,14 +51,14 @@ namespace siteMain.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "324cb551-dcab-45f6-b8c2-52805ceabf27",
+                            ConcurrencyStamp = "e96eefe6-b27c-4752-8001-5b9d0cdc954f",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "cf0dc572-32bd-4119-a388-4934f630896f",
-                            ConcurrencyStamp = "2058662d-615f-4371-8573-de68e8922a41",
+                            ConcurrencyStamp = "786a9ed1-ac91-41b6-86e7-f2a8efe8f2cc",
                             Name = "DefaultUser",
                             NormalizedName = "USER"
                         });
@@ -98,6 +98,10 @@ namespace siteMain.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -152,18 +156,20 @@ namespace siteMain.Migrations
 
                     b.ToTable("AspNetUsers");
 
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
                     b.HasData(
                         new
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "83f097b5-217f-425e-996c-ed61909d0b4e",
+                            ConcurrencyStamp = "6e6791d1-0241-4501-b32f-ab9292c62518",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAELUQFrAitJ5yBweflL4T9A88xwsiroVd26WKgVFqyKWREG3CLMLzRD3lxDwHo+AlbQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC9s5a7w53c22L0m1avJzwn9ZgqjzKFE3fsAJhTcS2FVz98KNnKOCSlXiyZMpRJB/g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -173,13 +179,13 @@ namespace siteMain.Migrations
                         {
                             Id = "2803a9ed-8c75-4696-a109-1848a86d40ec",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9b9a6ee0-5025-4892-bc95-95ad61d3108e",
+                            ConcurrencyStamp = "bc953b69-d82d-4fa1-bdea-4eac1064ad8e",
                             Email = "mishytka-02@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MISHYTKA-02@MAIL.RU",
                             NormalizedUserName = "MISHA",
-                            PasswordHash = "AQAAAAEAACcQAAAAELgQ0+9R+CM/UD2K3zHeUChI4DSnuJoqfhEPEKkuGdePdi1sj76tw2qxzV0ShTWpoA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA59w92ka+PiDNEBzoM4tiL+qamV7S27602Q/QE+rVbkSc+Q3bwAHo7LsMa0cWJqag==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -279,21 +285,71 @@ namespace siteMain.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("siteMain.Domain.Entities.AllFilms", b =>
+            modelBuilder.Entity("siteMain.Domain.Entities.Actors", b =>
                 {
-                    b.Property<Guid>("IdFilm")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("AvgRateFilm")
+                    b.Property<float>("AvgRateActor")
                         .HasColumnType("real");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MetaDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaKeyWords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Metatitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subtitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Actors");
+                });
+
+            modelBuilder.Entity("siteMain.Domain.Entities.FilmsAndActors", b =>
+                {
+                    b.Property<int>("IdNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("IdActor")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdFilm")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NameActor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdFilm");
+                    b.HasKey("IdNumber");
 
-                    b.ToTable("AllFilms");
+                    b.HasIndex("IdActor");
+
+                    b.HasIndex("IdFilm");
+
+                    b.ToTable("FilmsAndActors");
                 });
 
             modelBuilder.Entity("siteMain.Domain.Entities.ServiceItem", b =>
@@ -301,6 +357,9 @@ namespace siteMain.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("AvgRateFilm")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
@@ -375,7 +434,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2021, 4, 28, 14, 52, 43, 314, DateTimeKind.Utc).AddTicks(202),
+                            DateAdded = new DateTime(2021, 6, 21, 11, 23, 23, 38, DateTimeKind.Utc).AddTicks(8874),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -383,7 +442,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2021, 4, 28, 14, 52, 43, 314, DateTimeKind.Utc).AddTicks(2376),
+                            DateAdded = new DateTime(2021, 6, 21, 11, 23, 23, 39, DateTimeKind.Utc).AddTicks(1130),
                             Text = "Содержание заполняется администратором",
                             Title = "Наши услуги"
                         },
@@ -391,15 +450,15 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2021, 4, 28, 14, 52, 43, 314, DateTimeKind.Utc).AddTicks(2440),
+                            DateAdded = new DateTime(2021, 6, 21, 11, 23, 23, 39, DateTimeKind.Utc).AddTicks(1196),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
                 });
 
-            modelBuilder.Entity("siteMain.Domain.Entities.UserRate", b =>
+            modelBuilder.Entity("siteMain.Domain.Entities.UserRates", b =>
                 {
-                    b.Property<int>("RateFilm")
+                    b.Property<int>("IdNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -407,15 +466,63 @@ namespace siteMain.Migrations
                     b.Property<Guid>("IdFilm")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdUser")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RateFilm")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RateFilm");
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("IdNumber");
+
+                    b.HasIndex("IdFilm");
+
+                    b.HasIndex("UsersId");
 
                     b.ToTable("UserRate");
+                });
+
+            modelBuilder.Entity("siteMain.Domain.Entities.UserRatesActors", b =>
+                {
+                    b.Property<int>("IdNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("IdActor")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("RateActor")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("IdNumber");
+
+                    b.HasIndex("IdActor");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("UserRatesActors");
+                });
+
+            modelBuilder.Entity("siteMain.Service.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -467,6 +574,47 @@ namespace siteMain.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("siteMain.Domain.Entities.FilmsAndActors", b =>
+                {
+                    b.HasOne("siteMain.Domain.Entities.Actors", "Actors")
+                        .WithMany("FilmsAndActors")
+                        .HasForeignKey("IdActor")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("siteMain.Domain.Entities.ServiceItem", "ServiceItem")
+                        .WithMany("FilmsAndActors")
+                        .HasForeignKey("IdFilm")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("siteMain.Domain.Entities.UserRates", b =>
+                {
+                    b.HasOne("siteMain.Domain.Entities.ServiceItem", "ServiceItem")
+                        .WithMany("UserRates")
+                        .HasForeignKey("IdFilm")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("siteMain.Service.User", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId");
+                });
+
+            modelBuilder.Entity("siteMain.Domain.Entities.UserRatesActors", b =>
+                {
+                    b.HasOne("siteMain.Domain.Entities.Actors", "Actors")
+                        .WithMany()
+                        .HasForeignKey("IdActor")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("siteMain.Service.User", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId");
                 });
 #pragma warning restore 612, 618
         }
