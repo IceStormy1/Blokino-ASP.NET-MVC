@@ -49,14 +49,14 @@ namespace siteMain.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "49b85e4b-f72b-42fa-9caa-1673c2cc8b6d",
+                            ConcurrencyStamp = "e96eefe6-b27c-4752-8001-5b9d0cdc954f",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "cf0dc572-32bd-4119-a388-4934f630896f",
-                            ConcurrencyStamp = "00eca9ca-c73e-432d-abe8-954ee9fec2a3",
+                            ConcurrencyStamp = "786a9ed1-ac91-41b6-86e7-f2a8efe8f2cc",
                             Name = "DefaultUser",
                             NormalizedName = "USER"
                         });
@@ -161,13 +161,13 @@ namespace siteMain.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "debe59f4-af05-4830-b5b0-b1a77bccafe6",
+                            ConcurrencyStamp = "6e6791d1-0241-4501-b32f-ab9292c62518",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHNnqEV+0o66kZpRQXfCEZWO+Vx6yctDKaA8EnmoIEjM8s86IfJz509NnnY6zzNAcg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC9s5a7w53c22L0m1avJzwn9ZgqjzKFE3fsAJhTcS2FVz98KNnKOCSlXiyZMpRJB/g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -177,13 +177,13 @@ namespace siteMain.Migrations
                         {
                             Id = "2803a9ed-8c75-4696-a109-1848a86d40ec",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b7d1864c-3da6-4a4a-af2a-6b8bf1a796c3",
+                            ConcurrencyStamp = "bc953b69-d82d-4fa1-bdea-4eac1064ad8e",
                             Email = "mishytka-02@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MISHYTKA-02@MAIL.RU",
                             NormalizedUserName = "MISHA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI15gVKP4nMhyKX2MUHZAjAnCf9fc9Lu+uEOk9oLT+jqeoMruYE0qSsJyDjH+cc3qw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA59w92ka+PiDNEBzoM4tiL+qamV7S27602Q/QE+rVbkSc+Q3bwAHo7LsMa0cWJqag==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -432,7 +432,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2021, 6, 3, 13, 28, 58, 947, DateTimeKind.Utc).AddTicks(1467),
+                            DateAdded = new DateTime(2021, 6, 21, 11, 23, 23, 38, DateTimeKind.Utc).AddTicks(8874),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -440,7 +440,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2021, 6, 3, 13, 28, 58, 947, DateTimeKind.Utc).AddTicks(3660),
+                            DateAdded = new DateTime(2021, 6, 21, 11, 23, 23, 39, DateTimeKind.Utc).AddTicks(1130),
                             Text = "Содержание заполняется администратором",
                             Title = "Наши услуги"
                         },
@@ -448,7 +448,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2021, 6, 3, 13, 28, 58, 947, DateTimeKind.Utc).AddTicks(3722),
+                            DateAdded = new DateTime(2021, 6, 21, 11, 23, 23, 39, DateTimeKind.Utc).AddTicks(1196),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
