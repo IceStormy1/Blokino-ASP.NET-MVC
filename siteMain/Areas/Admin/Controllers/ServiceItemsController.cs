@@ -12,18 +12,18 @@ namespace siteMain.Areas.Admin.Controllers
     [Area("Admin")]
     public class ServiceItemsController : Controller
     {
-        private readonly DataManager dataManager;
-        private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly DataManager _dataManager;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         public ServiceItemsController(DataManager dataManager, IWebHostEnvironment hostingEnvironment)
         {
-            this.dataManager = dataManager;
-            this.hostingEnvironment = hostingEnvironment;
+            this._dataManager = dataManager;
+            this._hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult Edit(Guid id)
         {
-            var entity = id == default ? new ServiceItem() : dataManager.ServiceItems.GetServiceItemById(id);
-            return View(entity);
+            var serviceItemById = id == default ? new ServiceItem() : _dataManager.ServiceItems.GetServiceItemById(id);
+            return View(serviceItemById);
         }
         [HttpPost]
         public IActionResult Edit(ServiceItem model, IFormFile titleImageFile)
@@ -33,12 +33,10 @@ namespace siteMain.Areas.Admin.Controllers
                 if (titleImageFile != null)
                 {
                     model.TitleImagePath = titleImageFile.FileName;
-                    using (var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create))
-                    {
-                        titleImageFile.CopyTo(stream);
-                    }
+                    using var stream = new FileStream(Path.Combine(_hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create);
+                    titleImageFile.CopyTo(stream);
                 }
-                dataManager.ServiceItems.SaveServiceItem(model);
+                _dataManager.ServiceItems.SaveServiceItem(model);
                 return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }
             return View(model);
@@ -47,7 +45,7 @@ namespace siteMain.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(Guid id)
         {
-            dataManager.ServiceItems.DeleteServiceItem(id);
+            _dataManager.ServiceItems.DeleteServiceItem(id);
             return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
         }
     }

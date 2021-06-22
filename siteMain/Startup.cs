@@ -29,12 +29,12 @@ namespace siteMain
             Configuration.Bind("Project", new Config()); // Project есть в файле appsettings.json
                                                          //подключаем интерфейсы и классы
             
-            services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
-            services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
-            services.AddTransient<IUserRate, EFUserRate>();
-            services.AddTransient<IActors, EFActors>();
-            services.AddTransient<IUserRateActors, EFUserRateActors>();
-            services.AddTransient<IFilmsAndActors, EFFilmsAndActors>();
+            services.AddTransient<ITextFieldsRepository, EfTextFieldsRepository>();
+            services.AddTransient<IServiceItemsRepository, EfServiceItemsRepository>();
+            services.AddTransient<IUserRate, EfUserRate>();
+            services.AddTransient<IActors, EfActors>();
+            services.AddTransient<IUserRateActors, EfUserRateActors>();
+            services.AddTransient<IFilmsAndActors, EfFilmsAndActors>();
             services.AddTransient<DataManager>();
 
             //подключаем контекст БД

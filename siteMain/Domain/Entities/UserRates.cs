@@ -22,7 +22,6 @@ namespace siteMain.Domain.Entities
         public Guid IdFilm { get; set; }
 
         public string Title { get; set; }
-
         public int RateFilm { get; set; }
 
         public User Users { get; set; }

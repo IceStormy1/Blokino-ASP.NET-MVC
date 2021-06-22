@@ -6,23 +6,23 @@ using siteMain.Domain;
 
 namespace siteMain.Service
 {
-    public class AVGRateActor
+    public class AvgRateActor
     {
-        private readonly DataManager dataManager;
+        private readonly DataManager _dataManager;
 
-        public AVGRateActor(DataManager dataManager)
+        public AvgRateActor(DataManager dataManager)
         {
-            this.dataManager = dataManager;
+            this._dataManager = dataManager;
         }
 
-        public void UpdateAVG(Guid id)
+        public void UpdateAvg(Guid id)
         {
-            var actors = dataManager.Actors.GetActorsById(id);
-            var userRateActor = dataManager.UserRateActors.GetUserRates(id);
+            var actors = _dataManager.Actors.GetActorsById(id);
+            var userRateActor = _dataManager.UserRateActors.GetUserRates(id);
 
             actors.AvgRateActor = (float)Math.Round(userRateActor, 2);
 
-            dataManager.Actors.SaveActors(actors);
+            _dataManager.Actors.SaveActors(actors);
         }
     }
 }

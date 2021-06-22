@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using siteMain.Domain;
 using siteMain.Domain.Entities;
@@ -13,13 +11,12 @@ namespace siteMain.Controllers
 {
     public class ActorsController : Controller
     {
-        private readonly DataManager dataManager;
-        private readonly AppDbContext context;
-        UserManager<IdentityUser> _manager;
+        private readonly DataManager _dataManager;
+        readonly UserManager<IdentityUser> _manager;
 
         public ActorsController(DataManager dataManager, UserManager<IdentityUser> manager)
         {
-            this.dataManager = dataManager;
+            this._dataManager = dataManager;
             this._manager = manager;
         }
 
@@ -27,12 +24,13 @@ namespace siteMain.Controllers
         {
             if (id != default)
             {
-                var actor = dataManager.Actors.GetActorsById(id);
+                var actor = _dataManager.Actors.GetActorsById(id);
                 
                 return View("ShowActor", new ActorsEdit
                 {
                     Id = actor.Id,
                     Title = actor.Title,
+                    AvgRateActor = actor.AvgRateActor,
                     TitleImagePath = actor.TitleImagePath,
                     Text = actor.Text,
                     FilmsAndActors = actor.FilmsAndActors.Select(x => new FilmsAndActorsModel
@@ -42,9 +40,9 @@ namespace siteMain.Controllers
                 });
             }
 
-            ViewBag.TextField = dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
+            ViewBag.TextField = _dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
             ViewBag.DateSortParm = sortOrder == "Avg" ? "Avg": "avg_desc";
-            var sort = dataManager.Actors.GetActors();
+            var sort = _dataManager.Actors.GetActors();
             
             switch (sortOrder)
             {
@@ -57,14 +55,13 @@ namespace siteMain.Controllers
                     
             }
             return View(sort);
-            //return View(dataManager.Actors.GetActors());
         }
         [HttpPost]
         public IActionResult Mark(Mark mark, UserRatesActors model, Guid id)
         {
-           // var serviceItem = dataManager.ServiceItems.GetServiceItemById(id);
-            var actors = dataManager.Actors.GetActorsById(id);
-            var avg = new AVGRateActor(dataManager);
+           
+            var actors = _dataManager.Actors.GetActorsById(id);
+            var avg = new AvgRateActor(_dataManager);
 
             model.UsersId = _manager.GetUserId(User).ToString();
             model.UserName = _manager.GetUserName(User).ToString();
@@ -72,8 +69,8 @@ namespace siteMain.Controllers
             model.IdActor = actors.Id;
             model.Title = actors.Title;
 
-            dataManager.UserRateActors.SaveUserRate(model);
-            avg.UpdateAVG(actors.Id);
+            _dataManager.UserRateActors.SaveUserRate(model);
+            avg.UpdateAvg(actors.Id);
 
             return RedirectToAction(nameof(Index), nameof(ActorsController).CutController());
         }

@@ -11,10 +11,8 @@ namespace siteMain.Domain.Entities
         [Required]
         public string CodeWord { get; set; } //В панели админа и на сайте обращаться к этому текстовому полю
 
-
         [Display(Name = "Название страницы(заголовок)")]
         public override string Title { get; set; }
-
 
         [Display(Name = "Содержание страницы")]
         public override string Text { get; set; } = "Содержание заполняется администратором";

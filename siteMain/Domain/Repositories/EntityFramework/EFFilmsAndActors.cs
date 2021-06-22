@@ -7,24 +7,24 @@ using siteMain.Domain.Repositories.Abstract;
 
 namespace siteMain.Domain.Repositories.EntityFramework
 {
-    public class EFFilmsAndActors:IFilmsAndActors
+    public class EfFilmsAndActors:IFilmsAndActors
     {
-        private readonly AppDbContext context;
+        private readonly AppDbContext _context;
 
-        public EFFilmsAndActors(AppDbContext context)
+        public EfFilmsAndActors(AppDbContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public void SaveFilmsAndActors(FilmsAndActors entity)
         {
-            context.Add(entity);
-            context.SaveChanges();
+            _context.Add(entity);
+            _context.SaveChanges();
         }
 
        public IQueryable<FilmsAndActors> GetFilmsAndActors()
         {
-            return context.FilmsAndActors;
+            return _context.FilmsAndActors;
         }
     }
 }

@@ -4,7 +4,7 @@
     ViewBag.Description = Model.MetaDescription;
     ViewBag.Keywords = Model.MetaKeyWords;
     ViewBag.AvgRate = Model.AvgRateActor; }
-@inject DataManager dataManager;
+@inject DataManager DataManager;
 <div>
     <h3>
         @Model.Title
@@ -13,7 +13,7 @@
         @Model.Subtitle
     </h3>
     <div>
-        <img class="img-block" src="~/images/@Model.TitleImagePath" />
+        <img class="img-block" src="~/images/@Model.TitleImagePath"/>
     </div>
 </div>
 <div>
@@ -23,10 +23,10 @@
 <div>
     <br />
     <h3>Средний рейтинг актера: @Model.AvgRateActor</h3>
-    @if (dataManager.UserRateActors.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count() == 1)
+    @if (DataManager.UserRateActors.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count() == 1)
     {
         <font size="4" color="red">Спасибо за вашу оценку!</font>
-        <font size="4" color="red">Ваша оценка: @dataManager.UserRateActors.GetUserMark(Model.Id.ToString(), User.Identity.Name).ToString()</font>
+        <font size="4" color="red">Ваша оценка: @DataManager.UserRateActors.GetUserMark(Model.Id.ToString(), User.Identity.Name).ToString()</font>
     }
     else
     {

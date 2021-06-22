@@ -11,7 +11,7 @@ namespace siteMain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20210621112323__initial1")]
-    partial class _initial1
+    partial class Initial1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

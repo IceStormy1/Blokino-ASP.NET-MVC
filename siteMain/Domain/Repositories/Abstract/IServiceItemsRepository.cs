@@ -13,6 +13,6 @@ namespace siteMain.Domain.Repositories.Abstract
         ServiceItem GetServiceItemById(Guid id); //выбрать текстовое поле по id
         void SaveServiceItem(ServiceItem entity); // сохранить изменения
         void DeleteServiceItem(Guid id); // удалить услугу
-        ServiceItem GetServiceItemByFilmName(string FilmName);
+        ServiceItem GetServiceItemByFilmName(string filmName);
     }
 }

@@ -10,23 +10,23 @@ using siteMain.Domain.Entities;
 
 namespace siteMain.Service
 {
-    public class AVGRateFilm
+    public class AvgRateFilm
     {
-        private readonly DataManager dataManager;
+        private readonly DataManager _dataManager;
         
-        public AVGRateFilm(DataManager dataManager)
+        public AvgRateFilm(DataManager dataManager)
         {
-            this.dataManager = dataManager;
+            this._dataManager = dataManager;
         }
 
-        public void UpdateAVG(Guid id)
+        public void UpdateAvg(Guid id)
         {
-            var serviceItem = dataManager.ServiceItems.GetServiceItemById(id);
-            var userRate = dataManager.UserRate.GetUserRates(id);
+            var serviceItem = _dataManager.ServiceItems.GetServiceItemById(id);
+            var userRate = _dataManager.UserRate.GetUserRates(id);
             
            serviceItem.AvgRateFilm = (float)Math.Round(userRate,2);                                                                                                                                                                                                                                                           
            
-            dataManager.ServiceItems.SaveServiceItem(serviceItem);
+            _dataManager.ServiceItems.SaveServiceItem(serviceItem);
         }
     }
 }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using siteMain.Models;
-using siteMain.Controllers;
-using siteMain.Domain;
 using siteMain.Service;
 
 namespace siteMain.Controllers
@@ -16,13 +10,13 @@ namespace siteMain.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         
         public AccountController(UserManager<IdentityUser> userMgr, SignInManager<IdentityUser> signinMgr)
         {
-            userManager = userMgr;
-            signInManager = signinMgr;
+            _userManager = userMgr;
+            _signInManager = signinMgr;
         }
 
         [AllowAnonymous]
@@ -37,11 +31,11 @@ namespace siteMain.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = await userManager.FindByNameAsync(model.UserName);
+                IdentityUser user = await _userManager.FindByNameAsync(model.UserName);
                 if (user != null)
                 {
-                    await signInManager.SignOutAsync();
-                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+                    await _signInManager.SignOutAsync();
+                    Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
                         if (user.NormalizedUserName == "ADMIN")
@@ -86,30 +80,26 @@ namespace siteMain.Controllers
                     LockoutEnabled = false,
                 };
 
-                var createResult = await userManager.CreateAsync(user, model.PasswordReg);
+                var createResult = await _userManager.CreateAsync(user, model.PasswordReg);
 
                 if (createResult.Succeeded)
                 {
-                    await signInManager.SignInAsync(user, false);
+                    await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "HomeControllerDef");
                 }
-                else
+
+                foreach (var identityError in createResult.Errors)
                 {
-                    foreach (var identityError in createResult.Errors)
-                    {
-                        ModelState.AddModelError("", identityError.Description);
-                    }
+                    ModelState.AddModelError("", identityError.Description);
                 }
             }
             return View(model);
         }
 
-
-
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            await signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "HomeControllerDef");
         }
     }
