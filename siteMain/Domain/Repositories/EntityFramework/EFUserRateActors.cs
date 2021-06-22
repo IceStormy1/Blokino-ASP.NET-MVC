@@ -7,36 +7,40 @@ using siteMain.Domain.Repositories.Abstract;
 
 namespace siteMain.Domain.Repositories.EntityFramework
 {
-    public class EFUserRateActors:IUserRateActors
+    public class EfUserRateActors:IUserRateActors
     {
-        private readonly AppDbContext context;
+        private readonly AppDbContext _context;
 
-        public EFUserRateActors(AppDbContext context)
+        public EfUserRateActors(AppDbContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public void SaveUserRate(UserRatesActors entity)
         {
-            //context.Entry(entity).State = EntityState.Added;
-            context.Add(entity);
-            context.SaveChanges();
+            _context.Add(entity);
+            _context.SaveChanges();
         }
 
         public double GetUserRates(Guid id)
         {
-            return context.UserRatesActors.Where(u => u.IdActor == id).Average(p => p.RateActor);
+            return _context.UserRatesActors.
+                Where(u => u.IdActor == id).
+                Average(p => p.RateActor);
         }
 
-        public IQueryable<UserRatesActors> GetUserByIdFilm(string idFilm, string NameUser)
+        public IQueryable<UserRatesActors> GetUserByIdFilm(string idFilm, string nameUser)
         {
-            var asdfgads = context.UserRate.Where(x => x.IdFilm.ToString() == idFilm).Where(c => c.UserName == NameUser);
-
-            return context.UserRatesActors.Where(x => x.IdActor.ToString() == idFilm).Where(c => c.UserName == NameUser);
+            return _context.UserRatesActors.
+                Where(x => x.IdActor.ToString() == idFilm).
+                Where(c => c.UserName == nameUser);
         }
-        public int GetUserMark(string idFilm, string NameUser)
+        public int GetUserMark(string idFilm, string nameUser)
         {
-            return context.UserRatesActors.Where(x => x.IdActor.ToString() == idFilm).Where(c => c.UserName == NameUser).Select(b => b.RateActor).First();
+            return _context.UserRatesActors.
+                Where(x => x.IdActor.ToString() == idFilm).
+                Where(c => c.UserName == nameUser).
+                Select(b => b.RateActor).First();
         }
     }
 }

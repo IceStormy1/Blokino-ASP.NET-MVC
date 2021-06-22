@@ -8,43 +8,47 @@ using siteMain.Domain.Repositories.Abstract;
 
 namespace siteMain.Domain.Repositories.EntityFramework
 {
-    public class EFServiceItemsRepository : IServiceItemsRepository
+    public class EfServiceItemsRepository : IServiceItemsRepository
     {
-        private readonly AppDbContext context;
+        private readonly AppDbContext _context;
 
-        public EFServiceItemsRepository(AppDbContext context)
+        public EfServiceItemsRepository(AppDbContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public IQueryable<ServiceItem> GetServiceItems()
         {
             
-            return context.ServiceItems;
+            return _context.ServiceItems;
         }
 
         public ServiceItem GetServiceItemById(Guid id)
         {
-            return context.ServiceItems.FirstOrDefault(x => x.Id == id);
+            return _context.ServiceItems.
+                Include(x => x.FilmsAndActors).
+                ThenInclude(s => s.ServiceItem).
+                FirstOrDefault(x => x.Id == id);
         }
-        public ServiceItem GetServiceItemByFilmName(string FilmName)
+
+        public ServiceItem GetServiceItemByFilmName(string filmName)
         {
-            return context.ServiceItems.FirstOrDefault(x => x.Title == FilmName);
+            return _context.ServiceItems.FirstOrDefault(x => x.Title == filmName);
         }
 
         public void SaveServiceItem(ServiceItem entity)
         {
             if (entity.Id == default)
-                context.Entry(entity).State = EntityState.Added;
+                _context.Entry(entity).State = EntityState.Added;
             else
-                context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
+                _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
         public void DeleteServiceItem(Guid id)
         {
-            context.ServiceItems.Remove(new ServiceItem() { Id = id });
-            context.SaveChanges();
+            _context.ServiceItems.Remove(new ServiceItem() { Id = id });
+            _context.SaveChanges();
         }
     }
 }

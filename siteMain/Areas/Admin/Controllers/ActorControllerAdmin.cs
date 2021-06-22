@@ -15,44 +15,43 @@ namespace siteMain.Areas.Admin.Controllers
     [Area("Admin")]
     public class ActorControllerAdmin : Controller
     {
-        private readonly DataManager dataManager;
-        private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly DataManager _dataManager;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         public ActorControllerAdmin(DataManager dataManager, IWebHostEnvironment hostingEnvironment)
         {
-            this.dataManager = dataManager;
-            this.hostingEnvironment = hostingEnvironment;
+            this._dataManager = dataManager;
+            this._hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult EditActor(Guid id)
         {
-            var entity = id == default ? new Actors() : dataManager.Actors.GetActorsById(id);
-            return View(entity);
+            var actorsById = id == default ? new Actors() : _dataManager.Actors.GetActorsById(id);
+            return View(actorsById);
         }
         [HttpPost]
-        public IActionResult EditActor(Actors model, IFormFile titleImageFile, string [] FilmName, FilmsAndActors filmsAndActors)
+        public IActionResult EditActor(Actors model, IFormFile titleImageFile, string [] filmName, FilmsAndActors filmsAndActors)
         {
             if (ModelState.IsValid)
             {
                 if (titleImageFile != null)
                 {
                     model.TitleImagePath = titleImageFile.FileName;
-                    using var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create);
+                    using var stream = new FileStream(Path.Combine(_hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create);
                     titleImageFile.CopyTo(stream);
                 }
-                dataManager.Actors.SaveActors(model);
-                foreach (var film in FilmName)
+                _dataManager.Actors.SaveActors(model);
+                foreach (var film in filmName)
                 {
-                    var films = dataManager.ServiceItems.GetServiceItemByFilmName(film);
-                    var NewfilmsAndActors = new FilmsAndActors
+                    var films = _dataManager.ServiceItems.GetServiceItemByFilmName(film);
+                    var newfilmsAndActors = new FilmsAndActors
                     {
                         IdFilm = films.Id, 
                         Title = films.Title, 
                         IdActor = model.Id, 
                         NameActor = model.Title
                     };
-                    dataManager.FilmsAndActors.SaveFilmsAndActors(NewfilmsAndActors);
+                    _dataManager.FilmsAndActors.SaveFilmsAndActors(newfilmsAndActors);
                 }
-                
                 return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }
             return View(model);
@@ -61,7 +60,7 @@ namespace siteMain.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(Guid id)
         {
-            dataManager.Actors.DeleteActors(id);
+            _dataManager.Actors.DeleteActors(id);
             return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
         }
     }

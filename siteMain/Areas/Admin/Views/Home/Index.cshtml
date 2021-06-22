@@ -4,7 +4,7 @@
     string strTitle = "Панель администратора";
     ViewBag.Title = strTitle;
 }
-@inject DataManager dataManager;
+@inject DataManager DataManager;
 <div>
     <h3>@strTitle</h3>
     <div>
@@ -39,10 +39,10 @@
         <div class="div-box">
             <a asp-area="Admin" asp-controller="ActorControllerAdmin" asp-action="EditActor" asp-route-id="">Добавить актера</a>
         </div>
-        @if (dataManager.Actors.GetActors().Any())
+        @if (DataManager.Actors.GetActors().Any())
         {
             <div>
-                @foreach (Actors entity in dataManager.Actors.GetActors())
+                @foreach (Actors entity in DataManager.Actors.GetActors())
                 {
                     <div>
                         <a asp-area="Admin" asp-controller="ActorControllerAdmin" asp-action="EditActor" asp-route-id="@entity.Id">редактировать</a>

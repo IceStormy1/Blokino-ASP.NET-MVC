@@ -6,16 +6,16 @@ namespace siteMain.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        private readonly DataManager dataManager;
+        private readonly DataManager _dataManager;
 
         public HomeController(DataManager dataManager)
         {
-            this.dataManager = dataManager;
+            this._dataManager = dataManager;
         }
 
         public IActionResult Index()
         {
-            return View(dataManager.ServiceItems.GetServiceItems());
+            return View(_dataManager.ServiceItems.GetServiceItems());
         }
     }
 }

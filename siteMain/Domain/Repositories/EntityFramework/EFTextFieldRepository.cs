@@ -8,42 +8,42 @@ using siteMain.Domain.Repositories.Abstract;
 
 namespace siteMain.Domain.Repositories.EntityFramework
 {
-    public class EFTextFieldsRepository : ITextFieldsRepository
+    public class EfTextFieldsRepository : ITextFieldsRepository
     {
-        private readonly AppDbContext context;
-        public EFTextFieldsRepository(AppDbContext context)
+        private readonly AppDbContext _context;
+        public EfTextFieldsRepository(AppDbContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public IQueryable<TextFields> GetTextFields()
         {
-            return context.TextFields;
+            return _context.TextFields;
         }
 
         public TextFields GetTextFieldsById(Guid id)
         {
-            return context.TextFields.FirstOrDefault(x => x.Id == id);
+            return _context.TextFields.FirstOrDefault(x => x.Id == id);
         }
 
         public TextFields GetTextFieldsByCodeWord(string codeWord)
         {
-            return context.TextFields.FirstOrDefault(x => x.CodeWord == codeWord);
+            return _context.TextFields.FirstOrDefault(x => x.CodeWord == codeWord);
         }
 
         public void SaveTextFields(TextFields entity)
         {
             if (entity.Id == default)
-                context.Entry(entity).State = EntityState.Added;
+                _context.Entry(entity).State = EntityState.Added;
             else
-                context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
+                _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
         public void DeleteTextFields(Guid id)
         {
-            context.TextFields.Remove(new TextFields() { Id = id });
-            context.SaveChanges();
+            _context.TextFields.Remove(new TextFields() { Id = id });
+            _context.SaveChanges();
         }
     }
 }
