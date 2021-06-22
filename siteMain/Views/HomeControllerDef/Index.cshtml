@@ -1,4 +1,13 @@
-﻿<div id="content">
+﻿@model IQueryable<ServiceItem>
+<style type="text/css">    #footer {
+         background: url(/images/footer-tail.gif) repeat-x left top #bfbfbf;
+         color: #1d1d1d;
+         font-size: .86em;
+         line-height: 1.667em;
+         text-align: center;
+         margin-top: 500px;
+     }</style>
+<div id="content">
     <div id="slogan">
         <div class="image png"></div>
         <div class="inside">
@@ -22,22 +31,16 @@
     <div class="content">
         <h3>Недавно вышедшие <span>фильмы</span></h3>
         <ul class="movies">
-            <li>
-                <h4>История игрушек</h4><img src="~/images/1page-img2.jpg" alt="" />
-                <p>Check out Disney-Pixar's official Toy Story site, watch the <span>Toy Story 3</span> trailer, and meet new characters. Remember, no toy gets left behind!</p>
-                <div class="wrapper"><a href="#" class="link2"><span><span>Read More</span></span></a></div>
-            </li>
-            <li>
-                <h4>Prince of Percia: Sands of Time</h4><img src="~/images/1page-img3.jpg" alt="" />
-                <p>A young fugitive prince and princess must stop a villain who unknowingly threatens to destroy the world with a special dagger.</p>
-                <div class="wrapper"><a href="#" class="link2"><span><span>Read More</span></span></a></div>
-            </li>
-            <li class="last">
-                <h4>The Twilight Saga: Eclipse</h4><img src="~/images/1page-img4.jpg" alt="" />
-                <p>As a string of mysterious killings grips Bella is forced to choose between her love for vampire Edward and her friendship with werewolf Jacob.</p>
-                <div class="wrapper"><a href="#" class="link2"><span><span>Read More</span></span></a></div>
-            </li>
-            <li class="clear">&nbsp;</li>
+            @{ int counter = 0; }
+            @foreach (ServiceItem entity in Model)
+            {
+                if(counter == 2) { break;}
+                <li>
+                <a asp-area="" asp-controller="Services" asp-action="Index" asp-route-id="@entity.Id">
+                    <h4>@entity.Title</h4><img src="~/images/@entity.TitleImagePath" alt=""/></a>
+                </li>
+                counter++;
+             }
         </ul>
     </div>
 </div>
