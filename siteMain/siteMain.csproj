@@ -6,12 +6,16 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Views\**" />
+    <Compile Remove="Models\ViewComponents\**" />
     <Compile Remove="Views\Home\**" />
     <Content Remove="Areas\Views\**" />
+    <Content Remove="Models\ViewComponents\**" />
     <Content Remove="Views\Home\**" />
     <EmbeddedResource Remove="Areas\Views\**" />
+    <EmbeddedResource Remove="Models\ViewComponents\**" />
     <EmbeddedResource Remove="Views\Home\**" />
     <None Remove="Areas\Views\**" />
+    <None Remove="Models\ViewComponents\**" />
     <None Remove="Views\Home\**" />
   </ItemGroup>
 
@@ -21,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\ViewComponents\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
