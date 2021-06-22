@@ -14,7 +14,7 @@ namespace siteMain.Controllers
 
         public IActionResult Index()
         {
-            return View(_dataManager.TextFields.GetTextFieldsByCodeWord("PageIndex"));
+            return View(_dataManager.ServiceItems.GetServiceItems());
         }
 
         public IActionResult Contacts()
