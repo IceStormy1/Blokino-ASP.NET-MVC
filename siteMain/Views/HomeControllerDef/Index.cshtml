@@ -1,4 +1,4 @@
-﻿@model IQueryable<ServiceItem>
+﻿@model IQueryable<Films>
 <style type="text/css">    #footer {
          background: url(/images/footer-tail.gif) repeat-x left top #bfbfbf;
          color: #1d1d1d;
@@ -32,11 +32,11 @@
         <h3>Недавно вышедшие <span>фильмы</span></h3>
         <ul class="movies">
             @{ int counter = 0; }
-            @foreach (ServiceItem entity in Model)
+            @foreach (Films entity in Model)
             {
                 if(counter == 2) { break;}
                 <li>
-                <a asp-area="" asp-controller="Services" asp-action="Index" asp-route-id="@entity.Id">
+                <a asp-area="" asp-controller="Films" asp-action="Index" asp-route-id="@entity.Id">
                     <h4>@entity.Title</h4><img src="~/images/@entity.TitleImagePath" alt=""/></a>
                 </li>
                 counter++;

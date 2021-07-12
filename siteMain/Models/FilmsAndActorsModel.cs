@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace siteMain.Models
+﻿namespace siteMain.Models
 {
     public class FilmsAndActorsModel
     {

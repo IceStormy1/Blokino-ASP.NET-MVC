@@ -14,7 +14,7 @@ namespace siteMain.Controllers
 
         public IActionResult Index()
         {
-            return View(_dataManager.ServiceItems.GetServiceItems());
+            return View(_dataManager.Films.GetFilms());
         }
 
         public IActionResult Contacts()

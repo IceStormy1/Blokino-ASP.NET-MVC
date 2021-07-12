@@ -1,10 +1,6 @@
-﻿@model IQueryable<ServiceItem>
+﻿@model IQueryable<Films>
 @{
     TextFields textField = ViewBag.TextField;
-
-    ViewBag.Title = textField.Metatitle;
-    ViewBag.Description = textField.MetaDescription;
-    ViewBag.Keywords = textField.MetaKeyWords;
 }
 
 <div>
@@ -19,15 +15,14 @@
     @if (Model.Any())
     {
         <ul class="big-image-list">
-            @foreach (ServiceItem entity in Model)
+            @foreach (Films entity in Model)
             {
                 <li>
                     <br/><hr/>
-                    <h4>@entity.Title</h4>
-                    <p class="">@entity.Subtitle</p>
-                    <a asp-area="" asp-controller="Services" asp-action="Index" asp-route-id="@entity.Id">
-                        <img src="~/images/@entity.TitleImagePath" alt="" class="left"/>
-                    </a>
+                    <a asp-area="" asp-controller="Films" asp-action="Index" asp-route-id="@entity.Id">
+                             <h4>@entity.Title</h4>
+                             <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
+                         </a>
                     <h4>Рейтинг фильма: @entity.AvgRateFilm</h4>
                 </li>
             }

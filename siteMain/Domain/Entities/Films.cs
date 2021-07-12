@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using siteMain.Domain.Entities;
 
 
 namespace siteMain.Domain.Entities
 {
-    public class ServiceItem:EntityBase
+    public class Films:EntityBase
     {
         [Required(ErrorMessage = "Заполните название фильма")]
         [Display(Name = "Название фильма")]
+        [MaxLength(150)]
         public override string Title { get; set; }
-
-        [Display(Name = "Краткое описание фильма")]
-        public override string Subtitle { get; set; }
 
         [Display(Name = "Полное описание фильма")]
         public override string Text { get; set; }
@@ -23,7 +17,7 @@ namespace siteMain.Domain.Entities
         [Display(Name = "Средний рейтинг фильма")]
         public float AvgRateFilm { get; set; }
 
-        public List<UserRates> UserRates { get; set; }
+        public List<UserRatesFilm> UserRates { get; set; }
         public List<FilmsAndActors> FilmsAndActors { get; set; }
     }
     

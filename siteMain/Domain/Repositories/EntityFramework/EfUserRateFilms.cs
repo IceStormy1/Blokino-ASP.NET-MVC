@@ -5,16 +5,16 @@ using siteMain.Domain.Repositories.Abstract;
 
 namespace siteMain.Domain.Repositories.EntityFramework
 {
-    public class EfUserRateActors:IUserRateActors
+    public class EfUserRateFilms : IUserRateFilms
     {
         private readonly AppDbContext _context;
-
-        public EfUserRateActors(AppDbContext context)
+       
+        public EfUserRateFilms(AppDbContext context)
         {
             this._context = context;
         }
 
-        public void SaveUserRate(UserRatesActors entity)
+        public void SaveUserRate(UserRatesFilm entity)
         {
             _context.Add(entity);
             _context.SaveChanges();
@@ -22,23 +22,25 @@ namespace siteMain.Domain.Repositories.EntityFramework
 
         public double GetUserRates(Guid id)
         {
-            return _context.UserRatesActors.
-                Where(u => u.IdActor == id).
-                Average(p => p.RateActor);
+            return _context.UserRateFilms.
+                Where(u => u.IdFilm == id).
+                Average(p => p.RateFilm);
         }
 
-        //public IQueryable<UserRatesActors> GetUserByIdFilm(string idFilm, string nameUser)
+        //public IQueryable<UserRatesFilm> GetUserByIdFilm(string idFilm, string nameUser)
         //{
-        //    return _context.UserRatesActors.
-        //        Where(x => x.IdActor.ToString() == idFilm).
+        //    return _context.UserRateFilms.
+        //        Where(x => x.IdFilm.ToString() == idFilm).
         //        Where(c => c.UserName == nameUser);
         //}
+
         //public int GetUserMark(string idFilm, string nameUser)
         //{
-        //    return _context.UserRatesActors.
-        //        Where(x => x.IdActor.ToString() == idFilm).
+        //    return _context.UserRateFilms.
+        //        Where(x => x.IdFilm.ToString() == idFilm).
         //        Where(c => c.UserName == nameUser).
-        //        Select(b => b.RateActor).First();
+        //        Select(b=>b.RateFilm).
+        //        First();
         //}
     }
 }

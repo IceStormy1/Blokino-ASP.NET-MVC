@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using siteMain.Domain.Entities;
 
 namespace siteMain.Models
 {
-    public class ServiceItemEdit
+    public class FilmsEdit
     {
         [Required(ErrorMessage = "Заполните название фильма")]
         [Display(Name = "Название фильма")]

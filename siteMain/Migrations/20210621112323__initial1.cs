@@ -68,7 +68,7 @@ namespace siteMain.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ServiceItems",
+                name: "Films",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -265,13 +265,13 @@ namespace siteMain.Migrations
                     table.ForeignKey(
                         name: "FK_FilmsAndActors_ServiceItems_IdFilm",
                         column: x => x.IdFilm,
-                        principalTable: "ServiceItems",
+                        principalTable: "Films",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserRate",
+                name: "UserRateFilms",
                 columns: table => new
                 {
                     IdNumber = table.Column<int>(nullable: false)
@@ -288,7 +288,7 @@ namespace siteMain.Migrations
                     table.ForeignKey(
                         name: "FK_UserRate_ServiceItems_IdFilm",
                         column: x => x.IdFilm,
-                        principalTable: "ServiceItems",
+                        principalTable: "Films",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -388,12 +388,12 @@ namespace siteMain.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRate_IdFilm",
-                table: "UserRate",
+                table: "UserRateFilms",
                 column: "IdFilm");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRate_UsersId",
-                table: "UserRate",
+                table: "UserRateFilms",
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
@@ -431,7 +431,7 @@ namespace siteMain.Migrations
                 name: "TextFields");
 
             migrationBuilder.DropTable(
-                name: "UserRate");
+                name: "UserRateFilms");
 
             migrationBuilder.DropTable(
                 name: "UserRatesActors");
@@ -440,7 +440,7 @@ namespace siteMain.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "ServiceItems");
+                name: "Films");
 
             migrationBuilder.DropTable(
                 name: "Actors");

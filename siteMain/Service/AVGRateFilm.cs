@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore;
 using siteMain.Domain;
-using siteMain.Domain.Entities;
 
 namespace siteMain.Service
 {
@@ -21,12 +14,12 @@ namespace siteMain.Service
 
         public void UpdateAvg(Guid id)
         {
-            var serviceItem = _dataManager.ServiceItems.GetServiceItemById(id);
-            var userRate = _dataManager.UserRate.GetUserRates(id);
+            var films = _dataManager.Films.GetFilmsById(id);
+            var userRate = _dataManager.UserRateFilms.GetUserRates(id);
             
-           serviceItem.AvgRateFilm = (float)Math.Round(userRate,2);                                                                                                                                                                                                                                                           
+           films.AvgRateFilm = (float)Math.Round(userRate,2);                                                                                                                                                                                                                                                           
            
-            _dataManager.ServiceItems.SaveServiceItem(serviceItem);
+            _dataManager.Films.SaveFilms(films);
         }
     }
 }

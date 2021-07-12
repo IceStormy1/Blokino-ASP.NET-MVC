@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace siteMain.Domain.Entities
 {
@@ -11,6 +7,8 @@ namespace siteMain.Domain.Entities
         [Required]
         public string CodeWord { get; set; } //В панели админа и на сайте обращаться к этому текстовому полю
 
+        [Required]
+        [MaxLength(100)]
         [Display(Name = "Название страницы(заголовок)")]
         public override string Title { get; set; }
 

@@ -1,12 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,8 +25,8 @@ namespace siteMain
                                                          //подключаем интерфейсы и классы
             
             services.AddTransient<ITextFieldsRepository, EfTextFieldsRepository>();
-            services.AddTransient<IServiceItemsRepository, EfServiceItemsRepository>();
-            services.AddTransient<IUserRate, EfUserRate>();
+            services.AddTransient<IFilms, EfFilms>();
+            services.AddTransient<IUserRateFilms, EfUserRateFilms>();
             services.AddTransient<IActors, EfActors>();
             services.AddTransient<IUserRateActors, EfUserRateActors>();
             services.AddTransient<IFilmsAndActors, EfFilmsAndActors>();
@@ -56,7 +51,7 @@ namespace siteMain
             {
                 options.Cookie.Name = "myBlokinoAuth";
                 options.Cookie.HttpOnly = true;
-                options.LoginPath = "/account/login";
+                options.LoginPath = "/Account/Login";
                 options.AccessDeniedPath = "/account/accessdenied";
                 options.SlidingExpiration = true;
             });
@@ -83,12 +78,12 @@ namespace siteMain
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");

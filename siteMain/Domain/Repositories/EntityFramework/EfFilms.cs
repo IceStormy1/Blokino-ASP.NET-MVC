@@ -1,42 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using siteMain.Domain.Entities;
 using siteMain.Domain.Repositories.Abstract;
 
 namespace siteMain.Domain.Repositories.EntityFramework
 {
-    public class EfServiceItemsRepository : IServiceItemsRepository
+    public class EfFilms : IFilms
     {
         private readonly AppDbContext _context;
 
-        public EfServiceItemsRepository(AppDbContext context)
+        public EfFilms(AppDbContext context)
         {
             this._context = context;
         }
 
-        public IQueryable<ServiceItem> GetServiceItems()
+        public IQueryable<Films> GetFilms()
         {
             
-            return _context.ServiceItems;
+            return _context.Films;
         }
 
-        public ServiceItem GetServiceItemById(Guid id)
+        public Films GetFilmsById(Guid id)
         {
-            return _context.ServiceItems.
+            return _context.Films.
                 Include(x => x.FilmsAndActors).
-                ThenInclude(s => s.ServiceItem).
+                ThenInclude(s => s.Films).
                 FirstOrDefault(x => x.Id == id);
         }
 
-        public ServiceItem GetServiceItemByFilmName(string filmName)
+        public Films GetFilmsByFilmName(string filmName)
         {
-            return _context.ServiceItems.FirstOrDefault(x => x.Title == filmName);
+            return _context.Films.FirstOrDefault(x => x.Title == filmName);
         }
 
-        public void SaveServiceItem(ServiceItem entity)
+        public void SaveFilms(Films entity)
         {
             if (entity.Id == default)
                 _context.Entry(entity).State = EntityState.Added;
@@ -45,9 +43,9 @@ namespace siteMain.Domain.Repositories.EntityFramework
             _context.SaveChanges();
         }
 
-        public void DeleteServiceItem(Guid id)
+        public void DeleteFilms(Guid id)
         {
-            _context.ServiceItems.Remove(new ServiceItem() { Id = id });
+            _context.Films.Remove(new Films() { Id = id });
             _context.SaveChanges();
         }
     }

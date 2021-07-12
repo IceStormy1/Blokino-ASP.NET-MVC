@@ -35,7 +35,7 @@ namespace siteMain.Controllers
                     Text = actor.Text,
                     FilmsAndActors = actor.FilmsAndActors.Select(x => new FilmsAndActorsModel
                     {
-                        Title = x.ServiceItem.Title,
+                        Title = x.Films.Title,
                     }).ToList()
                 });
             }
@@ -51,23 +51,21 @@ namespace siteMain.Controllers
                     break;
                 case "Avg":
                     sort = sort.OrderBy(s => s.AvgRateActor);
-                    break; 
-                    
+                    break;
             }
             return View(sort);
         }
         [HttpPost]
         public IActionResult Mark(Mark mark, UserRatesActors model, Guid id)
         {
-           
             var actors = _dataManager.Actors.GetActorsById(id);
             var avg = new AvgRateActor(_dataManager);
 
             model.UsersId = _manager.GetUserId(User).ToString();
-            model.UserName = _manager.GetUserName(User).ToString();
+           // model.UserName = _manager.GetUserName(User).ToString();
             model.RateActor = mark.MarkValue;
             model.IdActor = actors.Id;
-            model.Title = actors.Title;
+           // model.Title = actors.Title;
 
             _dataManager.UserRateActors.SaveUserRate(model);
             avg.UpdateAvg(actors.Id);

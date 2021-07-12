@@ -22,7 +22,7 @@
             <div class="div-box">
                 <font size="4" color="red">В каких фильмах снимался актер? &nbsp;&nbsp;&nbsp;</font>
                 <select multiple name="FilmName" id="FilmName">
-                    @foreach (ServiceItem entity in DataManager.ServiceItems.GetServiceItems())
+                    @foreach (Films entity in DataManager.Films.GetFilms())
                     {
                         <option>@entity.Title</option>
                     }

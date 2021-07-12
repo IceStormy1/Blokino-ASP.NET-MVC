@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-using siteMain.Service;
 
 namespace siteMain.Domain.Entities
 {
@@ -13,11 +7,10 @@ namespace siteMain.Domain.Entities
     {
         [Required(ErrorMessage = "Заполните имя актера")]
         [Display(Name = "Имя актера")]
+        [MaxLength(250)]
         public override string Title { get; set; }
 
-        [Display(Name = "Краткая биография актера")]
-        public override string Subtitle { get; set; }
-
+        [Required]
         [Display(Name = "Полная биография актера")]
         public override string Text { get; set; }
 

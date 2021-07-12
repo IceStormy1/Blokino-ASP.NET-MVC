@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using siteMain.Domain.Entities;
 using siteMain.Domain.Repositories.Abstract;
@@ -26,7 +24,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
         {
             return _context.Actors.
                 Include(x => x.FilmsAndActors).
-                ThenInclude(s => s.ServiceItem).
+                ThenInclude(s => s.Films).
                 FirstOrDefault(x => x.Id == id);
         }
         public void SaveActors(Actors entity)

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 using siteMain.Service;
 
 namespace siteMain.Domain.Entities
@@ -15,12 +12,8 @@ namespace siteMain.Domain.Entities
 
         public string UsersId { get; set; }
 
-        public string UserName { get; set; }
-
         [Required]
         public Guid IdActor { get; set; }
-
-        public string Title { get; set; }
 
         public int RateActor { get; set; }
 

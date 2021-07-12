@@ -1,4 +1,4 @@
-﻿@model ServiceItem
+﻿@model Films
 @{
     string strTitle = "Редактировать запись";
     ViewBag.Title = strTitle;
@@ -9,7 +9,7 @@
 <div>
     <h3>@strTitle</h3>
     <div>
-        <form asp-area="Admin" asp-controller="ServiceItems" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <form asp-area="Admin" asp-controller="Films" asp-action="Edit" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="DateAdded" />
             <input type="hidden" asp-for="TitleImagePath" />
@@ -32,21 +32,6 @@
                 <div>
                     <img class="img-block" src="~/images/@Model.TitleImagePath" />
                 </div>
-            </div>
-            <div class="div-box">
-                <label asp-for="Metatitle"></label>
-                <input asp-for="Metatitle" />
-                <span asp-validation-for="Metatitle"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="MetaDescription"></label>
-                <input asp-for="MetaDescription" />
-                <span asp-validation-for="MetaDescription"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="MetaKeyWords"></label>
-                <input asp-for="MetaKeyWords" />
-                <span asp-validation-for="MetaKeyWords"></span>
             </div>
             <input type="submit" value="Сохранить" />
         </form>

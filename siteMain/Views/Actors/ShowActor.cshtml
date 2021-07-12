@@ -23,7 +23,7 @@
 <div>
     <br />
     <h3>Средний рейтинг актера: @Model.AvgRateActor</h3>
-    @if (DataManager.UserRateActors.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count() == 1)
+    @*@if (DataManager.UserRateActors.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count() == 1)
     {
         <font size="4" color="red">Спасибо за вашу оценку!</font>
         <font size="4" color="red">Ваша оценка: @DataManager.UserRateActors.GetUserMark(Model.Id.ToString(), User.Identity.Name).ToString()</font>
@@ -53,5 +53,5 @@
         {
             <font size="4" color="red">@actors.Title</font><br />
         }
-    </h3>
+    </h3>*@
 </div>

@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using siteMain.Domain;
@@ -42,13 +39,13 @@ namespace siteMain.Areas.Admin.Controllers
                 _dataManager.Actors.SaveActors(model);
                 foreach (var film in filmName)
                 {
-                    var films = _dataManager.ServiceItems.GetServiceItemByFilmName(film);
+                    var films = _dataManager.Films.GetFilmsByFilmName(film);
                     var newfilmsAndActors = new FilmsAndActors
                     {
                         IdFilm = films.Id, 
-                        Title = films.Title, 
+                        //Title = films.Title, 
                         IdActor = model.Id, 
-                        NameActor = model.Title
+                       // NameActor = model.Title
                     };
                     _dataManager.FilmsAndActors.SaveFilmsAndActors(newfilmsAndActors);
                 }

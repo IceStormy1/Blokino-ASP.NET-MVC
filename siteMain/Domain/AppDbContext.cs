@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,8 +12,8 @@ namespace siteMain.Domain
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<TextFields> TextFields { get; set; }
-        public DbSet<ServiceItem> ServiceItems { get; set; }
-        public DbSet<UserRates> UserRate { get; set; }
+        public DbSet<Films> Films { get; set; }
+        public DbSet<UserRatesFilm> UserRateFilms { get; set; }
         public DbSet<Actors> Actors { get; set; }
         public DbSet<FilmsAndActors> FilmsAndActors { get; set; }
         public DbSet<UserRatesActors> UserRatesActors { get; set; }

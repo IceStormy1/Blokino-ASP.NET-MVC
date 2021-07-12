@@ -11,12 +11,12 @@ using siteMain.Service;
 namespace siteMain.Controllers
 {
     [Authorize]
-    public class ServicesController : Controller
+    public class FilmsController : Controller
     {
         private readonly DataManager _dataManager;
         readonly UserManager<IdentityUser> _manager;
         
-        public ServicesController(DataManager dataManager, UserManager<IdentityUser> manager)
+        public FilmsController(DataManager dataManager, UserManager<IdentityUser> manager)
         {
             this._dataManager = dataManager;
             this._manager = manager;
@@ -26,18 +26,18 @@ namespace siteMain.Controllers
         {
             if (id != default)
             {
-                var serviceItemById = _dataManager.ServiceItems.GetServiceItemById(id);
+                var filmsById = _dataManager.Films.GetFilmsById(id);
 
-                return View("Show", new ServiceItemEdit()
+                return View("Show", new FilmsEdit()
                 {
-                    Id = serviceItemById.Id,
-                    Title = serviceItemById.Title,
-                    AvgRateFilm = serviceItemById.AvgRateFilm,
-                    TitleImagePath = serviceItemById.TitleImagePath,
-                    Text = serviceItemById.Text,
-                    FilmsAndActors = serviceItemById.FilmsAndActors.Select(x=>new FilmsAndActorsModel()
+                    Id = filmsById.Id,
+                    Title = filmsById.Title,
+                    AvgRateFilm = filmsById.AvgRateFilm,
+                    TitleImagePath = filmsById.TitleImagePath,
+                    Text = filmsById.Text,
+                    FilmsAndActors = filmsById.FilmsAndActors.Select(x=>new FilmsAndActorsModel()
                     {
-                        Title = x.NameActor
+                        //Title = x.NameActor
                     }).ToList()
                 });
 
@@ -45,7 +45,7 @@ namespace siteMain.Controllers
 
             ViewBag.TextField = _dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
             ViewBag.DateSortParm = sortOrder == "Avg" ? "Avg" : "avg_desc";
-            var sort = _dataManager.ServiceItems.GetServiceItems();
+            var sort = _dataManager.Films.GetFilms();
 
             switch (sortOrder)
             {
@@ -59,22 +59,22 @@ namespace siteMain.Controllers
             return View(sort);
         }
         [HttpPost]
-        public IActionResult Mark(Mark mark, UserRates model, Guid id)
+        public IActionResult Mark(Mark mark, UserRatesFilm model, Guid id)
         {
-            var serviceItem = _dataManager.ServiceItems.GetServiceItemById(id);
+            var filmsById = _dataManager.Films.GetFilmsById(id);
             var avg = new AvgRateFilm(_dataManager);
             
             model.UsersId = _manager.GetUserId(User);
-            model.UserName = _manager.GetUserName(User);
+           // model.UserName = _manager.GetUserName(User);
             model.RateFilm = mark.MarkValue;
-            model.IdFilm = serviceItem.Id;
-            model.Title = serviceItem.Title;
+            model.IdFilm = filmsById.Id;
+           // model.Title = filmsById.Title;
             model.RateFilm = mark.MarkValue;
            
-            _dataManager.UserRate.SaveUserRate(model);
-            avg.UpdateAvg(serviceItem.Id);
+            _dataManager.UserRateFilms.SaveUserRate(model);
+            avg.UpdateAvg(filmsById.Id);
 
-            return RedirectToAction(nameof(Index), nameof(ServicesController).CutController());
+            return RedirectToAction(nameof(Index), nameof(FilmsController).CutController());
         }
     }
 }

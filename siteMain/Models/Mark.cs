@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using siteMain.Domain.Entities;
-
-namespace siteMain.Models
+﻿namespace siteMain.Models
 {
     public class Mark
     {
