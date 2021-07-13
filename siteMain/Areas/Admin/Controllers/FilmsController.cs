@@ -26,7 +26,7 @@ namespace siteMain.Areas.Admin.Controllers
             return View(filmsById);
         }
         [HttpPost]
-        public IActionResult Edit(Films model, IFormFile titleImageFile)
+        public IActionResult Edit(Films model, IFormFile titleImageFile, Guid[] actorId)
         {
             if (ModelState.IsValid)
             {
@@ -37,6 +37,18 @@ namespace siteMain.Areas.Admin.Controllers
                     titleImageFile.CopyTo(stream);
                 }
                 _dataManager.Films.SaveFilms(model);
+
+                foreach (var actor in actorId)
+                {
+                    var actorById = _dataManager.Actors.GetActorsById(actor);
+                    var filmsAndActors = new FilmsAndActors
+                    {
+                        IdFilm = model.Id,
+                        IdActor = actorById.Id,
+                    };
+                    _dataManager.FilmsAndActors.SaveFilmsAndActors(filmsAndActors);
+                }
+
                 return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }
             return View(model);

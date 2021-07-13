@@ -1,9 +1,10 @@
-﻿@model Films
+﻿@using siteMain.Domain
+@model Films
 @{
     string strTitle = "Редактировать запись";
     ViewBag.Title = strTitle;
 }
-
+@inject DataManager DataManager;
 <script src="~/js/ckeditor/ckeditor.js"></script>
 
 <div>
@@ -20,7 +21,15 @@
                 <input asp-for="Title" />
                 <span asp-validation-for="Title"></span>
             </div>
-            
+            <div class="div-box">
+                <font size="4" color="red">Какие актеры снимались в фильме? &nbsp;&nbsp;&nbsp;</font>
+                <select multiple name="actorId" id="actorId">
+                    @foreach (Actors entity in DataManager.Actors.GetActors())
+                    {
+                        <option value="@entity.Id">@entity.Title</option>
+                    }
+                </select>
+            </div>
             <div class="div-box">
                 <label asp-for="Text"></label>
                 <textarea asp-for="Text"></textarea>
