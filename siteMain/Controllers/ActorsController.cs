@@ -33,9 +33,10 @@ namespace siteMain.Controllers
                     AvgRateActor = actor.AvgRateActor,
                     TitleImagePath = actor.TitleImagePath,
                     Text = actor.Text,
+                    UsersId = _manager.GetUserId(User),
                     FilmsAndActors = actor.FilmsAndActors.Select(x => new FilmsAndActorsModel
                     {
-                        Title = x.Films.Title,
+                        Title = _dataManager.Films.GetFilmsById(x.IdFilm).Title
                     }).ToList()
                 });
             }

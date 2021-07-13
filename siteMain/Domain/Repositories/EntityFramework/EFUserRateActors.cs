@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using siteMain.Domain.Entities;
 using siteMain.Domain.Repositories.Abstract;
 
@@ -27,18 +29,26 @@ namespace siteMain.Domain.Repositories.EntityFramework
                 Average(p => p.RateActor);
         }
 
-        //public IQueryable<UserRatesActors> GetUserByIdFilm(string idFilm, string nameUser)
-        //{
-        //    return _context.UserRatesActors.
-        //        Where(x => x.IdActor.ToString() == idFilm).
-        //        Where(c => c.UserName == nameUser);
-        //}
-        //public int GetUserMark(string idFilm, string nameUser)
-        //{
-        //    return _context.UserRatesActors.
-        //        Where(x => x.IdActor.ToString() == idFilm).
-        //        Where(c => c.UserName == nameUser).
-        //        Select(b => b.RateActor).First();
-        //}
+        public IEnumerable<UserRatesActors> GetUserByIdFilm(string idFilm, string idUser)
+        {
+            return _context.UserRatesActors
+                .Include(c => c.Actors)
+                .Include(v => v.Users)
+                .ToList()
+                .Where(b => b.IdActor.ToString() == idFilm && b.UsersId == idUser);
+            //return _context.UserRatesActors.
+            //    Where(x => x.IdActor.ToString() == idFilm).
+            //    Where(c => c.UserName == nameUser);
+        }
+        public int GetUserMark(string idFilm, string idUser)
+        {
+            return _context.UserRatesActors
+                .Where(b => b.IdActor.ToString() == idFilm && b.UsersId == idUser)
+                .Select(c => c.RateActor).First();
+            //return _context.UserRatesActors.
+            //    Where(x => x.IdActor.ToString() == idFilm).
+            //    Where(c => c.UserName == nameUser).
+            //    Select(b => b.RateActor).First();
+        }
     }
 }

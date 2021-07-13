@@ -1,9 +1,5 @@
 ﻿@using siteMain.Domain
 @model ActorsEdit
-@{ ViewBag.Title = Model.Metatitle;
-    ViewBag.Description = Model.MetaDescription;
-    ViewBag.Keywords = Model.MetaKeyWords;
-    ViewBag.AvgRate = Model.AvgRateActor; }
 @inject DataManager DataManager;
 <div>
     <h3>
@@ -23,10 +19,10 @@
 <div>
     <br />
     <h3>Средний рейтинг актера: @Model.AvgRateActor</h3>
-    @*@if (DataManager.UserRateActors.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count() == 1)
+    @if (DataManager.UserRateActors.GetUserByIdFilm(Model.Id.ToString(), Model.UsersId).Count() == 1)
     {
         <font size="4" color="red">Спасибо за вашу оценку!</font>
-        <font size="4" color="red">Ваша оценка: @DataManager.UserRateActors.GetUserMark(Model.Id.ToString(), User.Identity.Name).ToString()</font>
+        <font size="4" color="red">Ваша оценка: @DataManager.UserRateActors.GetUserMark(Model.Id.ToString(), Model.UsersId).ToString()</font>
     }
     else
     {
@@ -46,7 +42,7 @@
             </select>
             <input type="submit" value="Сохранить" />
         </form>
-    }*@
+    }
     <h3>
         Фильмы, в которых участвовал актер: <br />
         @foreach (var actors in Model.FilmsAndActors)

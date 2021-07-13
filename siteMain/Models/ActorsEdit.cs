@@ -19,6 +19,8 @@ namespace siteMain.Models
         [Display(Name = "Средний рейтинг актера")]
         public float AvgRateActor { get; set; }
 
+        public string UsersId { get; set; }
+
         public List<FilmsAndActorsModel> FilmsAndActors { get; set; }
 
         [Required]
@@ -26,15 +28,6 @@ namespace siteMain.Models
 
         [Display(Name = "Титульная картинка")]
         public virtual string TitleImagePath { get; set; }
-
-        [Display(Name = "SEO метатег Title")]
-        public virtual string Metatitle { get; set; }
-
-        [Display(Name = "SEO метатег Description")]
-        public virtual string MetaDescription { get; set; }
-
-        [Display(Name = "SEO метатег KeyWords")]
-        public virtual string MetaKeyWords { get; set; }
 
         [DataType(DataType.Time)]
         public DateTime DateAdded { get; set; }
