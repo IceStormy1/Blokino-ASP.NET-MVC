@@ -22,6 +22,8 @@ namespace siteMain.Models
         [Display(Name = "Титульная картинка")]
         public virtual string TitleImagePath { get; set; }
 
+        public string UsersId { get; set; }
+
         [DataType(DataType.Time)]
         public DateTime DateAdded { get; set; }
 

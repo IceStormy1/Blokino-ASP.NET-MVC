@@ -18,10 +18,10 @@
 <div>
     <br />
     <h3>Средний рейтинг фильма: @Model.AvgRateFilm</h3>
-    @*@if (DataManager.UserRateFilms.GetUserByIdFilm(Model.Id.ToString(), User.Identity.Name).Count()==1)
+    @if (DataManager.UserRateFilms.GetUserByIdFilm(Model.Id.ToString(), Model.UsersId).Count()==1)
     {
         <font size="4" color="red">Спасибо за вашу оценку!</font>
-        <font size="4" color="red">Ваша оценка: @DataManager.UserRateFilms.GetUserMark(Model.Id.ToString(), User.Identity.Name).ToString()</font>
+        <font size="4" color="red">Ваша оценка: @DataManager.UserRateFilms.GetUserMark(Model.Id.ToString(), Model.UsersId).ToString()</font>
     }else
     {
     <form asp-action="Mark" method="post" asp-controller="Films" asp-route-id="@Model.Id">
@@ -40,7 +40,7 @@
         </select>
         <input type="submit" value="Сохранить" />
     </form>
-    }*@
+    }
     <h3>
         Актеры, принявшие участие в данном фильме:<br/>
         @foreach (var actors in Model.FilmsAndActors)

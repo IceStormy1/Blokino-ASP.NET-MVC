@@ -17,7 +17,7 @@ namespace siteMain.Domain.Entities
         [Display(Name = "Средний рейтинг фильма")]
         public float AvgRateFilm { get; set; }
 
-        public List<UserRatesFilm> UserRates { get; set; }
+        public List<UserRatesFilm> UserRatesFilms { get; set; }
         public List<FilmsAndActors> FilmsAndActors { get; set; }
     }
     

@@ -556,7 +556,7 @@ namespace siteMain.Migrations
             modelBuilder.Entity("siteMain.Domain.Entities.UserRatesFilm", b =>
                 {
                     b.HasOne("siteMain.Domain.Entities.Films", "Films")
-                        .WithMany("UserRates")
+                        .WithMany("UserRatesFilms")
                         .HasForeignKey("IdFilm")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

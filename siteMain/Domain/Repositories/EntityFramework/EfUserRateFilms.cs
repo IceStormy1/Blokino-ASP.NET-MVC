@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using siteMain.Domain.Entities;
 using siteMain.Domain.Repositories.Abstract;
 
@@ -27,20 +30,20 @@ namespace siteMain.Domain.Repositories.EntityFramework
                 Average(p => p.RateFilm);
         }
 
-        //public IQueryable<UserRatesFilm> GetUserByIdFilm(string idFilm, string nameUser)
-        //{
-        //    return _context.UserRateFilms.
-        //        Where(x => x.IdFilm.ToString() == idFilm).
-        //        Where(c => c.UserName == nameUser);
-        //}
+        public IEnumerable<UserRatesFilm> GetUserByIdFilm(string idFilm, string idUser)
+        {
+            return _context.UserRateFilms
+                .Include(c => c.Films)
+                .Include(v => v.Users)
+                .ToList()
+                .Where(b => b.IdFilm.ToString() == idFilm && b.UsersId == idUser);
+        }
 
-        //public int GetUserMark(string idFilm, string nameUser)
-        //{
-        //    return _context.UserRateFilms.
-        //        Where(x => x.IdFilm.ToString() == idFilm).
-        //        Where(c => c.UserName == nameUser).
-        //        Select(b=>b.RateFilm).
-        //        First();
-        //}
+        public int GetUserMark(string idFilm, string idUser)
+        {
+            return _context.UserRateFilms
+                .Where(b => b.IdFilm.ToString() == idFilm && b.UsersId == idUser)
+                .Select(c => c.RateFilm).First();
+        }
     }
 }

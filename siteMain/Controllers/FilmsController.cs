@@ -35,6 +35,7 @@ namespace siteMain.Controllers
                     AvgRateFilm = filmsById.AvgRateFilm,
                     TitleImagePath = filmsById.TitleImagePath,
                     Text = filmsById.Text,
+                    UsersId = _manager.GetUserId(User),
                     FilmsAndActors = filmsById.FilmsAndActors.Select(x=>new FilmsAndActorsModel()
                     {
                         Title = _dataManager.Actors.GetActorsById(x.IdActor).Title
