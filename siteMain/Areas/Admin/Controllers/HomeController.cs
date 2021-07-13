@@ -10,7 +10,7 @@ namespace siteMain.Areas.Admin.Controllers
 
         public HomeController(DataManager dataManager)
         {
-            this._dataManager = dataManager;
+            _dataManager = dataManager;
         }
 
         public IActionResult Index()

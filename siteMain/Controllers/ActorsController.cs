@@ -16,8 +16,8 @@ namespace siteMain.Controllers
 
         public ActorsController(DataManager dataManager, UserManager<IdentityUser> manager)
         {
-            this._dataManager = dataManager;
-            this._manager = manager;
+            _dataManager = dataManager;
+            _manager = manager;
         }
 
         public IActionResult Index(Guid id, string sortOrder)

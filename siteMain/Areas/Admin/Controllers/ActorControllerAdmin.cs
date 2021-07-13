@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using siteMain.Domain;
@@ -16,8 +17,8 @@ namespace siteMain.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _hostingEnvironment;
         public ActorControllerAdmin(DataManager dataManager, IWebHostEnvironment hostingEnvironment)
         {
-            this._dataManager = dataManager;
-            this._hostingEnvironment = hostingEnvironment;
+            _dataManager = dataManager;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult EditActor(Guid id)
@@ -26,7 +27,7 @@ namespace siteMain.Areas.Admin.Controllers
             return View(actorsById);
         }
         [HttpPost]
-        public IActionResult EditActor(Actors model, IFormFile titleImageFile, string [] filmName, FilmsAndActors filmsAndActors)
+        public IActionResult EditActor(Actors model, IFormFile titleImageFile, Guid [] filmId)
         {
             if (ModelState.IsValid)
             {
@@ -37,17 +38,16 @@ namespace siteMain.Areas.Admin.Controllers
                     titleImageFile.CopyTo(stream);
                 }
                 _dataManager.Actors.SaveActors(model);
-                foreach (var film in filmName)
+                foreach (var film in filmId)
                 {
-                    var films = _dataManager.Films.GetFilmsByFilmName(film);
-                    var newfilmsAndActors = new FilmsAndActors
+                    var filmsById = _dataManager.Films.GetFilmsById(film);
+
+                    var filmsAndActors = new FilmsAndActors
                     {
-                        IdFilm = films.Id, 
-                        //Title = films.Title, 
-                        IdActor = model.Id, 
-                       // NameActor = model.Title
+                        IdFilm = filmsById.Id,
+                        IdActor = model.Id,
                     };
-                    _dataManager.FilmsAndActors.SaveFilmsAndActors(newfilmsAndActors);
+                    _dataManager.FilmsAndActors.SaveFilmsAndActors(filmsAndActors);
                 }
                 return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }

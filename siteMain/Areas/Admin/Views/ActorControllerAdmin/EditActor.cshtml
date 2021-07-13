@@ -21,10 +21,10 @@
             </div>
             <div class="div-box">
                 <font size="4" color="red">В каких фильмах снимался актер? &nbsp;&nbsp;&nbsp;</font>
-                <select multiple name="FilmName" id="FilmName">
+                <select multiple name="filmId" id="filmId">
                     @foreach (Films entity in DataManager.Films.GetFilms())
                     {
-                        <option>@entity.Title</option>
+                        <option value="@entity.Id">@entity.Title</option>
                     }
                 </select>
             </div>

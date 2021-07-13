@@ -1,19 +1,11 @@
 ﻿@using siteMain.Domain
 @model FilmsEdit
-@{ ViewBag.Title = Model.Metatitle;
-                ViewBag.Description = Model.MetaDescription;
-                ViewBag.Keywords = Model.MetaKeyWords;
-    ViewBag.AvgRate = Model.AvgRateFilm;
-}
 
 @inject DataManager DataManager;
 
 <div>
     <h3>
         @Model.Title
-    </h3>
-    <h3>
-        @Model.Subtitle
     </h3>
     <div>
         <img class="img-block" src="~/images/@Model.TitleImagePath" />

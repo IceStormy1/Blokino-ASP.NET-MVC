@@ -10,8 +10,8 @@ using siteMain.Domain;
 namespace siteMain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210712183621__initialnew")]
-    partial class _initialnew
+    [Migration("20210713085015__initial")]
+    partial class _initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,14 +51,14 @@ namespace siteMain.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "9524a3cf-ea56-4ee3-93b4-41c0be3df5dc",
+                            ConcurrencyStamp = "eff6ef2b-2773-49ac-9c30-61deb23baed2",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "cf0dc572-32bd-4119-a388-4934f630896f",
-                            ConcurrencyStamp = "8a9b5ba9-bebd-4006-92c6-e044be3aa40b",
+                            ConcurrencyStamp = "ddc7a4ba-dfde-410b-a5c4-b6fadaf6b8da",
                             Name = "DefaultUser",
                             NormalizedName = "USER"
                         });
@@ -163,13 +163,13 @@ namespace siteMain.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8282bb4f-5712-46ef-8070-71c5996879be",
+                            ConcurrencyStamp = "0b478086-c6ea-4c21-94dd-d681260bc652",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEM9hJITMyT7bElY+wKbW7s2jC2i5H5ymockFDY5/HSyo7laGn1GjFjHmOLaRaUneHQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDTrZGqL87E5J+wOTRZWIX3GqIlYHP43Yupv1RNgs+LOICZoD2TjRVbJ0HNbdhJwsQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -179,13 +179,13 @@ namespace siteMain.Migrations
                         {
                             Id = "2803a9ed-8c75-4696-a109-1848a86d40ec",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c4fb21b7-3c5e-4445-890c-90deb448769f",
+                            ConcurrencyStamp = "b7235f35-81c4-4446-b903-7d1790383c16",
                             Email = "mishytka-02@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MISHYTKA-02@MAIL.RU",
                             NormalizedUserName = "MISHA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOytdEoKkQqYmpZ9AAzT9kPmQvthrDRSGeakaKMa+iW7uZM8BZpPBizu8PSyikaj4w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENvpB830QwjLIcFqAaB3qx5iVDK3RyJjO8hK/v0CTANHVS2paePcMrWJcFofT59w8g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -355,13 +355,6 @@ namespace siteMain.Migrations
                     b.Property<Guid>("IdFilm")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("NameActor")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("IdNumber");
 
                     b.HasIndex("IdActor");
@@ -404,7 +397,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2021, 7, 12, 18, 36, 21, 163, DateTimeKind.Utc).AddTicks(5764),
+                            DateAdded = new DateTime(2021, 7, 13, 8, 50, 15, 444, DateTimeKind.Utc).AddTicks(754),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
@@ -412,7 +405,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2021, 7, 12, 18, 36, 21, 163, DateTimeKind.Utc).AddTicks(7549),
+                            DateAdded = new DateTime(2021, 7, 13, 8, 50, 15, 444, DateTimeKind.Utc).AddTicks(2457),
                             Text = "Содержание заполняется администратором",
                             Title = "Наши услуги"
                         },
@@ -420,7 +413,7 @@ namespace siteMain.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2021, 7, 12, 18, 36, 21, 163, DateTimeKind.Utc).AddTicks(7612),
+                            DateAdded = new DateTime(2021, 7, 13, 8, 50, 15, 444, DateTimeKind.Utc).AddTicks(2522),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
@@ -438,12 +431,6 @@ namespace siteMain.Migrations
 
                     b.Property<int>("RateActor")
                         .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UsersId")
                         .HasColumnType("nvarchar(450)");
@@ -469,12 +456,6 @@ namespace siteMain.Migrations
 
                     b.Property<int>("RateFilm")
                         .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UsersId")
                         .HasColumnType("nvarchar(450)");

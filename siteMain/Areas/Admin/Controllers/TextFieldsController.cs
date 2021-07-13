@@ -11,7 +11,7 @@ namespace siteMain.Areas.Admin.Controllers
         private readonly DataManager _dataManager;
         public TextFieldsController(DataManager dataManager)
         {
-            this._dataManager = dataManager;
+            _dataManager = dataManager;
         }
 
         public IActionResult Edit(string codeWord)

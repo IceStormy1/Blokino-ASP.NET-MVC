@@ -16,8 +16,8 @@ namespace siteMain.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _hostingEnvironment;
         public FilmsController(DataManager dataManager, IWebHostEnvironment hostingEnvironment)
         {
-            this._dataManager = dataManager;
-            this._hostingEnvironment = hostingEnvironment;
+            _dataManager = dataManager;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult Edit(Guid id)

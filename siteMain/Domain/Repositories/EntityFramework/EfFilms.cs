@@ -12,7 +12,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
 
         public EfFilms(AppDbContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public IQueryable<Films> GetFilms()

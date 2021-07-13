@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace siteMain.Migrations
 {
-    public partial class Initial1 : Migration
+    public partial class _initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,13 +13,9 @@ namespace siteMain.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     TitleImagePath = table.Column<string>(nullable: true),
-                    Metatitle = table.Column<string>(nullable: true),
-                    MetaDescription = table.Column<string>(nullable: true),
-                    MetaKeyWords = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
-                    Subtitle = table.Column<string>(nullable: true),
-                    Text = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(maxLength: 250, nullable: false),
+                    Text = table.Column<string>(nullable: false),
                     AvgRateActor = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
@@ -73,18 +69,14 @@ namespace siteMain.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     TitleImagePath = table.Column<string>(nullable: true),
-                    Metatitle = table.Column<string>(nullable: true),
-                    MetaDescription = table.Column<string>(nullable: true),
-                    MetaKeyWords = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
-                    Subtitle = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(maxLength: 150, nullable: false),
                     Text = table.Column<string>(nullable: true),
                     AvgRateFilm = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ServiceItems", x => x.Id);
+                    table.PrimaryKey("PK_Films", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,14 +84,10 @@ namespace siteMain.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Subtitle = table.Column<string>(nullable: true),
                     TitleImagePath = table.Column<string>(nullable: true),
-                    Metatitle = table.Column<string>(nullable: true),
-                    MetaDescription = table.Column<string>(nullable: true),
-                    MetaKeyWords = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     CodeWord = table.Column<string>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(maxLength: 100, nullable: false),
                     Text = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -220,9 +208,7 @@ namespace siteMain.Migrations
                     IdNumber = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UsersId = table.Column<string>(nullable: true),
-                    UserName = table.Column<string>(nullable: true),
                     IdActor = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
                     RateActor = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -249,9 +235,7 @@ namespace siteMain.Migrations
                     IdNumber = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdFilm = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    IdActor = table.Column<Guid>(nullable: false),
-                    NameActor = table.Column<string>(nullable: true)
+                    IdActor = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -263,7 +247,7 @@ namespace siteMain.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FilmsAndActors_ServiceItems_IdFilm",
+                        name: "FK_FilmsAndActors_Films_IdFilm",
                         column: x => x.IdFilm,
                         principalTable: "Films",
                         principalColumn: "Id",
@@ -277,22 +261,20 @@ namespace siteMain.Migrations
                     IdNumber = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UsersId = table.Column<string>(nullable: true),
-                    UserName = table.Column<string>(nullable: true),
                     IdFilm = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
                     RateFilm = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRate", x => x.IdNumber);
+                    table.PrimaryKey("PK_UserRateFilms", x => x.IdNumber);
                     table.ForeignKey(
-                        name: "FK_UserRate_ServiceItems_IdFilm",
+                        name: "FK_UserRateFilms_Films_IdFilm",
                         column: x => x.IdFilm,
                         principalTable: "Films",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserRate_AspNetUsers_UsersId",
+                        name: "FK_UserRateFilms_AspNetUsers_UsersId",
                         column: x => x.UsersId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -304,8 +286,8 @@ namespace siteMain.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "e96eefe6-b27c-4752-8001-5b9d0cdc954f", "admin", "ADMIN" },
-                    { "cf0dc572-32bd-4119-a388-4934f630896f", "786a9ed1-ac91-41b6-86e7-f2a8efe8f2cc", "DefaultUser", "USER" }
+                    { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "eff6ef2b-2773-49ac-9c30-61deb23baed2", "admin", "ADMIN" },
+                    { "cf0dc572-32bd-4119-a388-4934f630896f", "ddc7a4ba-dfde-410b-a5c4-b6fadaf6b8da", "DefaultUser", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -313,18 +295,18 @@ namespace siteMain.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "6e6791d1-0241-4501-b32f-ab9292c62518", "IdentityUser", "my@email.com", true, false, null, "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEC9s5a7w53c22L0m1avJzwn9ZgqjzKFE3fsAJhTcS2FVz98KNnKOCSlXiyZMpRJB/g==", null, false, "", false, "admin" },
-                    { "2803a9ed-8c75-4696-a109-1848a86d40ec", 0, "bc953b69-d82d-4fa1-bdea-4eac1064ad8e", "IdentityUser", "mishytka-02@mail.com", true, false, null, "MISHYTKA-02@MAIL.RU", "MISHA", "AQAAAAEAACcQAAAAEA59w92ka+PiDNEBzoM4tiL+qamV7S27602Q/QE+rVbkSc+Q3bwAHo7LsMa0cWJqag==", null, false, "", false, "Misha" }
+                    { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "0b478086-c6ea-4c21-94dd-d681260bc652", "IdentityUser", "my@email.com", true, false, null, "MY@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEDTrZGqL87E5J+wOTRZWIX3GqIlYHP43Yupv1RNgs+LOICZoD2TjRVbJ0HNbdhJwsQ==", null, false, "", false, "admin" },
+                    { "2803a9ed-8c75-4696-a109-1848a86d40ec", 0, "b7235f35-81c4-4446-b903-7d1790383c16", "IdentityUser", "mishytka-02@mail.com", true, false, null, "MISHYTKA-02@MAIL.RU", "MISHA", "AQAAAAEAACcQAAAAENvpB830QwjLIcFqAaB3qx5iVDK3RyJjO8hK/v0CTANHVS2paePcMrWJcFofT59w8g==", null, false, "", false, "Misha" }
                 });
 
             migrationBuilder.InsertData(
                 table: "TextFields",
-                columns: new[] { "Id", "CodeWord", "DateAdded", "MetaDescription", "MetaKeyWords", "Metatitle", "Subtitle", "Text", "Title", "TitleImagePath" },
+                columns: new[] { "Id", "CodeWord", "DateAdded", "Text", "Title", "TitleImagePath" },
                 values: new object[,]
                 {
-                    { new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"), "PageIndex", new DateTime(2021, 6, 21, 11, 23, 23, 38, DateTimeKind.Utc).AddTicks(8874), null, null, null, null, "Содержание заполняется администратором", "Главная", null },
-                    { new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"), "PageServices", new DateTime(2021, 6, 21, 11, 23, 23, 39, DateTimeKind.Utc).AddTicks(1130), null, null, null, null, "Содержание заполняется администратором", "Наши услуги", null },
-                    { new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"), "PageContacts", new DateTime(2021, 6, 21, 11, 23, 23, 39, DateTimeKind.Utc).AddTicks(1196), null, null, null, null, "Содержание заполняется администратором", "Контакты", null }
+                    { new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"), "PageIndex", new DateTime(2021, 7, 13, 8, 50, 15, 444, DateTimeKind.Utc).AddTicks(754), "Содержание заполняется администратором", "Главная", null },
+                    { new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"), "PageServices", new DateTime(2021, 7, 13, 8, 50, 15, 444, DateTimeKind.Utc).AddTicks(2457), "Содержание заполняется администратором", "Наши услуги", null },
+                    { new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"), "PageContacts", new DateTime(2021, 7, 13, 8, 50, 15, 444, DateTimeKind.Utc).AddTicks(2522), "Содержание заполняется администратором", "Контакты", null }
                 });
 
             migrationBuilder.InsertData(
@@ -387,12 +369,12 @@ namespace siteMain.Migrations
                 column: "IdFilm");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRate_IdFilm",
+                name: "IX_UserRateFilms_IdFilm",
                 table: "UserRateFilms",
                 column: "IdFilm");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRate_UsersId",
+                name: "IX_UserRateFilms_UsersId",
                 table: "UserRateFilms",
                 column: "UsersId");
 

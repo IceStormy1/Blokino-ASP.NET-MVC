@@ -11,7 +11,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
         private readonly AppDbContext _context;
         public EfTextFieldsRepository(AppDbContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public IQueryable<TextFields> GetTextFields()

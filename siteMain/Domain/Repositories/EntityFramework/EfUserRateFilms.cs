@@ -11,7 +11,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
        
         public EfUserRateFilms(AppDbContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public void SaveUserRate(UserRatesFilm entity)

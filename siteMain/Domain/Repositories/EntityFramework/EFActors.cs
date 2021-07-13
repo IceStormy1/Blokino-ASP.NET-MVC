@@ -12,7 +12,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
 
         public EfActors(AppDbContext context)
         {
-            this._context = context;
+            _context = context;
         }
         
         public IQueryable<Actors> GetActors()

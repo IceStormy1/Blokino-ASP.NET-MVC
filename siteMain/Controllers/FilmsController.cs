@@ -18,8 +18,8 @@ namespace siteMain.Controllers
         
         public FilmsController(DataManager dataManager, UserManager<IdentityUser> manager)
         {
-            this._dataManager = dataManager;
-            this._manager = manager;
+            _dataManager = dataManager;
+            _manager = manager;
         }
         
         public IActionResult Index(Guid id, string sortOrder)
@@ -37,13 +37,12 @@ namespace siteMain.Controllers
                     Text = filmsById.Text,
                     FilmsAndActors = filmsById.FilmsAndActors.Select(x=>new FilmsAndActorsModel()
                     {
-                        //Title = x.NameActor
+                        Title = _dataManager.Actors.GetActorsById(x.IdActor).Title
                     }).ToList()
                 });
-
             }
 
-            ViewBag.TextField = _dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
+            //ViewBag.TextField = _dataManager.TextFields.GetTextFieldsByCodeWord("PageServices");
             ViewBag.DateSortParm = sortOrder == "Avg" ? "Avg" : "avg_desc";
             var sort = _dataManager.Films.GetFilms();
 

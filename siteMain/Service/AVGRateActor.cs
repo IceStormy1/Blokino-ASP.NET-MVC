@@ -9,7 +9,7 @@ namespace siteMain.Service
 
         public AvgRateActor(DataManager dataManager)
         {
-            this._dataManager = dataManager;
+            _dataManager = dataManager;
         }
 
         public void UpdateAvg(Guid id)

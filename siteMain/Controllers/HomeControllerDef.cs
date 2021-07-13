@@ -9,7 +9,7 @@ namespace siteMain.Controllers
 
         public HomeControllerDef(DataManager dataManager)
         {
-            this._dataManager = dataManager;
+            _dataManager = dataManager;
         }
 
         public IActionResult Index()

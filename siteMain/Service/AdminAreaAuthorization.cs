@@ -13,8 +13,8 @@ namespace siteMain.Service
 
         public AdminAreaAuthorization(string area, string policy)
         {
-            this._area = area;
-            this._policy = policy;
+            _area = area;
+            _policy = policy;
         }
 
         public void Apply(ControllerModel controller)
