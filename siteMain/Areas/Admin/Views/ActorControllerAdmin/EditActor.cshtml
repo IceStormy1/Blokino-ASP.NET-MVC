@@ -1,10 +1,10 @@
-﻿@using siteMain.Domain
-@model Actors
+﻿@model ActorEditAdmin
 @{ string strTitle = "Редактировать запись";
-    ViewBag.Title = strTitle; }
+    ViewBag.Title = strTitle;
+}
 
 <script src="~/js/ckeditor/ckeditor.js"></script>
-@inject DataManager DataManager;
+
 <div>
     <h3>@strTitle</h3>
     <div>
@@ -22,7 +22,7 @@
             <div class="div-box">
                 <font size="4" color="red">В каких фильмах снимался актер? &nbsp;&nbsp;&nbsp;</font>
                 <select multiple name="filmId" id="filmId">
-                    @foreach (Films entity in DataManager.Films.GetFilms())
+                    @foreach (Films entity in Model.GetFilms)
                     {
                         <option value="@entity.Id">@entity.Title</option>
                     }

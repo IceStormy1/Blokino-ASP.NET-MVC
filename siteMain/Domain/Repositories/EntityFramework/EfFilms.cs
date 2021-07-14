@@ -18,7 +18,6 @@ namespace siteMain.Domain.Repositories.EntityFramework
 
         public IQueryable<Films> GetFilms()
         {
-            
             return _context.Films;
         }
 

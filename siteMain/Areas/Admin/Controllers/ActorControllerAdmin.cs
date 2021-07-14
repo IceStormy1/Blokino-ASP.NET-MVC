@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using siteMain.Areas.Admin.Model;
 using siteMain.Domain;
 using siteMain.Domain.Entities;
 using siteMain.Service;
@@ -23,11 +24,15 @@ namespace siteMain.Areas.Admin.Controllers
 
         public IActionResult EditActor(Guid id)
         {
-            var actorsById = id == default ? new Actors() : _dataManager.Actors.GetActorsById(id);
+            var test = _dataManager.Films.GetFilms();
+            var actorsById = new ActorEditAdmin()
+            {
+                GetFilms = _dataManager.Films.GetFilms()
+            };
             return View(actorsById);
         }
         [HttpPost]
-        public IActionResult EditActor(Actors model, IFormFile titleImageFile, Guid [] filmId)
+        public IActionResult EditActor(ActorEditAdmin model, IFormFile titleImageFile, Guid [] filmId)
         {
             if (ModelState.IsValid)
             {
@@ -37,7 +42,15 @@ namespace siteMain.Areas.Admin.Controllers
                     using var stream = new FileStream(Path.Combine(_hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create);
                     titleImageFile.CopyTo(stream);
                 }
-                _dataManager.Actors.SaveActors(model);
+
+                var saveActors = new Actors()
+                {
+                    TitleImagePath = model.TitleImagePath,
+                    Title = model.Title,
+                    Text = model.Text
+                };
+                _dataManager.Actors.SaveActors(saveActors);
+
                 foreach (var film in filmId)
                 {
                     var filmsById = _dataManager.Films.GetFilmsById(film);
@@ -45,7 +58,7 @@ namespace siteMain.Areas.Admin.Controllers
                     var filmsAndActors = new FilmsAndActors
                     {
                         IdFilm = filmsById.Id,
-                        IdActor = model.Id,
+                        IdActor = saveActors.Id,
                     };
                     _dataManager.FilmsAndActors.SaveFilmsAndActors(filmsAndActors);
                 }

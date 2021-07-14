@@ -13,11 +13,10 @@ namespace siteMain.Areas.Admin.Controllers
         {
             _dataManager = dataManager;
         }
-
+        
         public IActionResult Index()
         {
-            var actorAdmin = _dataManager.Actors.GetActors();
-            var filmsAdmin = _dataManager.Films.GetFilms();
+            
             return View("Index", new FilmsAndActorsAdmin()
             {
                 Films = _dataManager.Films.GetFilms(),
