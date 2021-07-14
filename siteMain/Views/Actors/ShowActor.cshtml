@@ -45,7 +45,8 @@
         Фильмы, в которых участвовал актер: <br />
         @foreach (var actors in Model.FilmsAndActors)
         {
-            <font size="4" color="red">@actors.Title</font><br />
+    <a asp-area="" asp-controller="Films" asp-action="Index" asp-route-id="@actors.Id">
+        <font size="4" color="red">@actors.Title</font><br /></a>
         }
-    </h3>
+</h3>
 </div>

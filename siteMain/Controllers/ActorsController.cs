@@ -38,7 +38,8 @@ namespace siteMain.Controllers
                     UsersMark = _dataManager.UserRateActors.GetUserMark(actor.Id.ToString(), _manager.GetUserId(User)),
                     FilmsAndActors = actor.FilmsAndActors.Select(x => new FilmsAndActorsModel
                     {
-                        Title = _dataManager.Films.GetFilmsById(x.IdFilm).Title
+                        Title = _dataManager.Films.GetFilmsById(x.IdFilm).Title,
+                        Id = _dataManager.Films.GetFilmsById(x.IdFilm).Id
                     }).ToList()
                 });
             }
