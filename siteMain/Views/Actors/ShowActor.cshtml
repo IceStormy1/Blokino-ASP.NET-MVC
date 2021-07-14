@@ -1,6 +1,4 @@
-﻿@using siteMain.Domain
-@model ActorsEdit
-@inject DataManager DataManager;
+﻿@model ActorsEdit
 <div>
     <h3>
         @Model.Title
@@ -19,10 +17,10 @@
 <div>
     <br />
     <h3>Средний рейтинг актера: @Model.AvgRateActor</h3>
-    @if (DataManager.UserRateActors.GetUserByIdFilm(Model.Id.ToString(), Model.UsersId).Count() == 1)
+    @if (Model.GetUserById)
     {
         <font size="4" color="red">Спасибо за вашу оценку!</font>
-        <font size="4" color="red">Ваша оценка: @DataManager.UserRateActors.GetUserMark(Model.Id.ToString(), Model.UsersId).ToString()</font>
+        <font size="4" color="red">Ваша оценка: @Model.UsersMark</font>
     }
     else
     {

@@ -34,6 +34,8 @@ namespace siteMain.Controllers
                     TitleImagePath = actor.TitleImagePath,
                     Text = actor.Text,
                     UsersId = _manager.GetUserId(User),
+                    GetUserById = _dataManager.UserRateActors.GetUserByIdFilm(actor.Id.ToString(), _manager.GetUserId(User)).Count() == 1,
+                    UsersMark = _dataManager.UserRateActors.GetUserMark(actor.Id.ToString(), _manager.GetUserId(User)),
                     FilmsAndActors = actor.FilmsAndActors.Select(x => new FilmsAndActorsModel
                     {
                         Title = _dataManager.Films.GetFilmsById(x.IdFilm).Title

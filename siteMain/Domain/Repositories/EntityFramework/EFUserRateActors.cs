@@ -40,9 +40,16 @@ namespace siteMain.Domain.Repositories.EntityFramework
 
         public int GetUserMark(string idFilm, string idUser)
         {
-            return _context.UserRatesActors
-                .Where(b => b.IdActor.ToString() == idFilm && b.UsersId == idUser)
-                .Select(c => c.RateActor).First();
+            try
+            {
+                return _context.UserRatesActors
+                    .Where(b => b.IdActor.ToString() == idFilm && b.UsersId == idUser)
+                    .Select(c => c.RateActor).First();
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
         }
     }
 }
