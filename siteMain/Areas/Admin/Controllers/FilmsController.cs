@@ -3,6 +3,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using siteMain.Areas.Admin.Model;
 using siteMain.Domain;
 using siteMain.Domain.Entities;
 using siteMain.Service;
@@ -22,11 +23,26 @@ namespace siteMain.Areas.Admin.Controllers
 
         public IActionResult Edit(Guid id)
         {
-            var filmsById = id == default ? new Films() : _dataManager.Films.GetFilmsById(id);
+            var GetFilmsById = _dataManager.Films.GetFilmsById(id);
+
+            var filmsById = id == default
+                ? new FilmEditAdmin()
+                {
+                    GetActors = _dataManager.Actors.GetActors()
+                }
+                : new FilmEditAdmin()
+                {
+                    GetActors = _dataManager.Actors.GetActors(),
+                    Id = GetFilmsById.Id,
+                    DateAdded = GetFilmsById.DateAdded,
+                    Text = GetFilmsById.Text,
+                    Title = GetFilmsById.Title,
+                    TitleImagePath = GetFilmsById.TitleImagePath
+                }; ;
             return View(filmsById);
         }
         [HttpPost]
-        public IActionResult Edit(Films model, IFormFile titleImageFile, Guid[] actorId)
+        public IActionResult Edit(FilmEditAdmin model, IFormFile titleImageFile, Guid[] actorId)
         {
             if (ModelState.IsValid)
             {
@@ -36,15 +52,22 @@ namespace siteMain.Areas.Admin.Controllers
                     using var stream = new FileStream(Path.Combine(_hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create);
                     titleImageFile.CopyTo(stream);
                 }
-                _dataManager.Films.SaveFilms(model);
+
+                var saveFilms = new Films()
+                {
+                    TitleImagePath = model.TitleImagePath,
+                    Title = model.Title,
+                    Text = model.Text
+                };
+                _dataManager.Films.SaveFilms(saveFilms);
 
                 foreach (var actor in actorId)
                 {
                     var actorById = _dataManager.Actors.GetActorsById(actor);
                     var filmsAndActors = new FilmsAndActors
                     {
-                        IdFilm = model.Id,
                         IdActor = actorById.Id,
+                        IdFilm = saveFilms.Id,
                     };
                     _dataManager.FilmsAndActors.SaveFilmsAndActors(filmsAndActors);
                 }

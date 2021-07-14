@@ -28,7 +28,7 @@ namespace siteMain.Areas.Admin.Model
         public float AvgRateActor { get; set; }
 
         [Display(Name = "Титульная картинка")]
-        public virtual string TitleImagePath { get; set; }
+        public string TitleImagePath { get; set; }
 
         [DataType(DataType.Time)]
         public DateTime DateAdded { get; set; }

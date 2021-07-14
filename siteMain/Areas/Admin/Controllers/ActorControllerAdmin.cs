@@ -25,11 +25,8 @@ namespace siteMain.Areas.Admin.Controllers
         public IActionResult EditActor(Guid id)
         {
             var GetActorsById = _dataManager.Actors.GetActorsById(id);
-            //var actorsById = new ActorEditAdmin()
-            //{
-            //    GetFilms = _dataManager.Films.GetFilms()
-            //};
-            var actorsById = id == default
+            
+            var actorsById = id == default 
                 ? new ActorEditAdmin()
             {
                 GetFilms = _dataManager.Films.GetFilms()
