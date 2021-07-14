@@ -56,6 +56,7 @@ namespace siteMain.Areas.Admin.Controllers
 
                 var saveActors = new Actors()
                 {
+                    Id = model.Id,
                     TitleImagePath = model.TitleImagePath,
                     Title = model.Title,
                     Text = model.Text

@@ -36,10 +36,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
 
         public void SaveFilms(Films entity)
         {
-            if (entity.Id == default)
-                _context.Entry(entity).State = EntityState.Added;
-            else
-                _context.Entry(entity).State = EntityState.Modified;
+            _context.Entry(entity).State = entity.Id == default ? EntityState.Added : EntityState.Modified;
             _context.SaveChanges();
         }
 

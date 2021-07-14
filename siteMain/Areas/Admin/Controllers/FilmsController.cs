@@ -55,6 +55,7 @@ namespace siteMain.Areas.Admin.Controllers
 
                 var saveFilms = new Films()
                 {
+                    Id = model.Id,
                     TitleImagePath = model.TitleImagePath,
                     Title = model.Title,
                     Text = model.Text
