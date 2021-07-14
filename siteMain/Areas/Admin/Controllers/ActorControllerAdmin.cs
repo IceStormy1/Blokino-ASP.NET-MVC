@@ -24,10 +24,24 @@ namespace siteMain.Areas.Admin.Controllers
 
         public IActionResult EditActor(Guid id)
         {
-            var test = _dataManager.Films.GetFilms();
-            var actorsById = new ActorEditAdmin()
+            var GetActorsById = _dataManager.Actors.GetActorsById(id);
+            //var actorsById = new ActorEditAdmin()
+            //{
+            //    GetFilms = _dataManager.Films.GetFilms()
+            //};
+            var actorsById = id == default
+                ? new ActorEditAdmin()
             {
                 GetFilms = _dataManager.Films.GetFilms()
+            } 
+                : new ActorEditAdmin()
+            {
+                GetFilms = _dataManager.Films.GetFilms(),
+                Id = GetActorsById.Id,
+                DateAdded = GetActorsById.DateAdded,
+                Text = GetActorsById.Text,
+                Title = GetActorsById.Title,
+                TitleImagePath = GetActorsById.TitleImagePath
             };
             return View(actorsById);
         }

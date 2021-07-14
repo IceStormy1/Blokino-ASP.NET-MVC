@@ -35,6 +35,8 @@ namespace siteMain.Areas.Admin.Model
 
         public IQueryable<Films> GetFilms { get; set; }
 
+        public Actors GetActorsById { get; set; }
+
         public List<FilmsAndActors> FilmsAndActors { get; set; }
     }
 }
