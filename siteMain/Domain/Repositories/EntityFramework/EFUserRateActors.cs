@@ -36,19 +36,13 @@ namespace siteMain.Domain.Repositories.EntityFramework
                 .Include(v => v.Users)
                 .ToList()
                 .Where(b => b.IdActor.ToString() == idFilm && b.UsersId == idUser);
-            //return _context.UserRatesActors.
-            //    Where(x => x.IdActor.ToString() == idFilm).
-            //    Where(c => c.UserName == nameUser);
         }
+
         public int GetUserMark(string idFilm, string idUser)
         {
             return _context.UserRatesActors
                 .Where(b => b.IdActor.ToString() == idFilm && b.UsersId == idUser)
                 .Select(c => c.RateActor).First();
-            //return _context.UserRatesActors.
-            //    Where(x => x.IdActor.ToString() == idFilm).
-            //    Where(c => c.UserName == nameUser).
-            //    Select(b => b.RateActor).First();
         }
     }
 }

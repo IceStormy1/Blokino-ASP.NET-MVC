@@ -1,8 +1,4 @@
-﻿@using siteMain.Domain
-@model FilmsEdit
-
-@inject DataManager DataManager;
-
+﻿@model FilmsEdit
 <div>
     <h3>
         @Model.Title
@@ -18,10 +14,10 @@
 <div>
     <br />
     <h3>Средний рейтинг фильма: @Model.AvgRateFilm</h3>
-    @if (DataManager.UserRateFilms.GetUserByIdFilm(Model.Id.ToString(), Model.UsersId).Count()==1)
+    @if (Model.GetUserById)
     {
         <font size="4" color="red">Спасибо за вашу оценку!</font>
-        <font size="4" color="red">Ваша оценка: @DataManager.UserRateFilms.GetUserMark(Model.Id.ToString(), Model.UsersId).ToString()</font>
+        <font size="4" color="red">Ваша оценка: @Model.UsersMark</font>
     }else
     {
     <form asp-action="Mark" method="post" asp-controller="Films" asp-route-id="@Model.Id">

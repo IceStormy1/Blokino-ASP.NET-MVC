@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using siteMain.Domain.Entities;
@@ -14,7 +15,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
             _context = context;
         }
 
-        public IQueryable<TextFields> GetTextFields()
+        public IEnumerable<TextFields> GetTextFields()
         {
             return _context.TextFields;
         }

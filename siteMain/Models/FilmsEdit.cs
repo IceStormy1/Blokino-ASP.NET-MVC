@@ -27,6 +27,10 @@ namespace siteMain.Models
         [DataType(DataType.Time)]
         public DateTime DateAdded { get; set; }
 
+        public bool GetUserById { get; set; }
+
+        public int UsersMark { get; set; }
+
         public IEnumerable<FilmsAndActorsModel> FilmsAndActors { get; set; }
     }
 }

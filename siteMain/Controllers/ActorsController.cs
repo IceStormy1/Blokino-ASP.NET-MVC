@@ -63,11 +63,9 @@ namespace siteMain.Controllers
             var avg = new AvgRateActor(_dataManager);
 
             model.UsersId = _manager.GetUserId(User).ToString();
-           // model.UserName = _manager.GetUserName(User).ToString();
             model.RateActor = mark.MarkValue;
             model.IdActor = actors.Id;
-           // model.Title = actors.Title;
-
+            
             _dataManager.UserRateActors.SaveUserRate(model);
             avg.UpdateAvg(actors.Id);
 

@@ -27,7 +27,21 @@ namespace siteMain.Controllers
             if (id != default)
             {
                 var filmsById = _dataManager.Films.GetFilmsById(id);
-
+                var test = new FilmsEdit()
+                {
+                    Id = filmsById.Id,
+                    Title = filmsById.Title,
+                    AvgRateFilm = filmsById.AvgRateFilm,
+                    TitleImagePath = filmsById.TitleImagePath,
+                    Text = filmsById.Text,
+                    UsersId = _manager.GetUserId(User),
+                    GetUserById = _dataManager.UserRateFilms.GetUserByIdFilm(filmsById.Id.ToString(), _manager.GetUserId(User)).Count() == 1,
+                    UsersMark = _dataManager.UserRateFilms.GetUserMark(filmsById.Id.ToString(), _manager.GetUserId(User)),
+                    FilmsAndActors = filmsById.FilmsAndActors.Select(x => new FilmsAndActorsModel()
+                    {
+                        Title = _dataManager.Actors.GetActorsById(x.IdActor).Title
+                    }).ToList()
+                };
                 return View("Show", new FilmsEdit()
                 {
                     Id = filmsById.Id,
@@ -36,6 +50,8 @@ namespace siteMain.Controllers
                     TitleImagePath = filmsById.TitleImagePath,
                     Text = filmsById.Text,
                     UsersId = _manager.GetUserId(User),
+                    GetUserById = _dataManager.UserRateFilms.GetUserByIdFilm(filmsById.Id.ToString(), _manager.GetUserId(User)).Count() == 1,
+                    UsersMark = _dataManager.UserRateFilms.GetUserMark(filmsById.Id.ToString(), _manager.GetUserId(User)),
                     FilmsAndActors = filmsById.FilmsAndActors.Select(x=>new FilmsAndActorsModel()
                     {
                         Title = _dataManager.Actors.GetActorsById(x.IdActor).Title

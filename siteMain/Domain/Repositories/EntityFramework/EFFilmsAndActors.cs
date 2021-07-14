@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using siteMain.Domain.Entities;
 using siteMain.Domain.Repositories.Abstract;
 
@@ -19,7 +20,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
             _context.SaveChanges();
         }
 
-       public IQueryable<FilmsAndActors> GetFilmsAndActors()
+       public IEnumerable<FilmsAndActors> GetFilmsAndActors()
         {
             return _context.FilmsAndActors;
         }
