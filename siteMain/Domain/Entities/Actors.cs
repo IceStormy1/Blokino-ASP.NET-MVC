@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace siteMain.Domain.Entities
@@ -15,7 +16,7 @@ namespace siteMain.Domain.Entities
         public override string Text { get; set; }
 
         [Display(Name = "Средний рейтинг актера")]
-        public float AvgRateActor { get; set; }
+        public float? AvgRateActor { get; set; }
 
         public List<FilmsAndActors> FilmsAndActors { get; set; }
     }

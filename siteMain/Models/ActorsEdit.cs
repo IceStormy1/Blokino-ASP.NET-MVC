@@ -17,7 +17,7 @@ namespace siteMain.Models
         public string Text { get; set; }
 
         [Display(Name = "Средний рейтинг актера")]
-        public float AvgRateActor { get; set; }
+        public float? AvgRateActor { get; set; }
 
         public string UsersId { get; set; }
 

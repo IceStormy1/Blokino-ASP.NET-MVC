@@ -31,7 +31,7 @@ namespace siteMain
             services.AddTransient<IUserRateActors, EfUserRateActors>();
             services.AddTransient<IFilmsAndActors, EfFilmsAndActors>();
             services.AddTransient<DataManager>();
-
+            
             //подключаем контекст БД
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
 

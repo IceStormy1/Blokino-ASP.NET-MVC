@@ -46,7 +46,7 @@ namespace siteMain.Domain.Repositories.EntityFramework
                     .Where(b => b.IdActor.ToString() == idFilm && b.UsersId == idUser)
                     .Select(c => c.RateActor).First();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return 0;
             }

@@ -70,7 +70,7 @@ namespace siteMain.Areas.Admin.Controllers
                     var filmsAndActors = new FilmsAndActors
                     {
                         IdFilm = filmsById.Id,
-                        IdActor = saveActors.Id,
+                        IdActor = saveActors.Id
                     };
                     _dataManager.FilmsAndActors.SaveFilmsAndActors(filmsAndActors);
                 }

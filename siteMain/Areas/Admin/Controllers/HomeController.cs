@@ -16,7 +16,6 @@ namespace siteMain.Areas.Admin.Controllers
         
         public IActionResult Index()
         {
-            
             return View("Index", new FilmsAndActorsAdmin()
             {
                 Films = _dataManager.Films.GetFilms(),
